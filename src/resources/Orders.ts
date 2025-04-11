@@ -1,13 +1,12 @@
+import type ShipStation from '../shipstation';
 import type {
-  Order,
   CreateOrderLabelOptions,
   ListOrdersByTagOptions,
-  OrderOperationResponse,
   MarkShippedOptions,
-  MarkShippedResponse
+  MarkShippedResponse,
+  Order,
+  OrderOperationResponse
 } from '../types';
-import type ShipStation from '../shipstation';
-import { BaseResource } from './Base';
 import type {
   CreateLabelResponse,
   CreateOrUpdateMultipleOrdersResponse,
@@ -16,6 +15,7 @@ import type {
   ListOrdersResponse,
   OrderResponseItem
 } from '../types';
+import { BaseResource } from './Base';
 
 export class Orders extends BaseResource {
   constructor(protected override shipstation: ShipStation) {

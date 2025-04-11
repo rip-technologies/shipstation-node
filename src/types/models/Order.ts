@@ -2,8 +2,8 @@ import type { Address } from './Address';
 import type { AdvancedOptions } from './AdvancedOptions';
 import type { Dimensions } from './Dimensions';
 import type { InsuranceOptions } from './InsuranceOptions';
-import type { OrderItem } from './OrderItem';
 import type { InternationalOptions } from './InternationalOptions';
+import type { OrderItem } from './OrderItem';
 import type { Weight } from './Weight';
 
 export type OrderStatus =

@@ -1,5 +1,5 @@
 import type { Address } from 'cluster';
-import type { Dimensions, InsuranceOptions, InternationalOptions, AdvancedOptions, Weight, DeliveryConfirmation, OrderItem } from '../models';
+import type { AdvancedOptions, DeliveryConfirmation, Dimensions, InsuranceOptions, InternationalOptions, OrderItem, Weight } from '../models';
 import type { PaginatedRequest, PaginatedResponse } from './pagination';
 export interface CreateShipmentLabelOptions {
     /** Identifies the carrier to be used for this label. */

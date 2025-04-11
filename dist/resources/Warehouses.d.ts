@@ -1,6 +1,6 @@
 import type ShipStation from '../shipstation';
-import { BaseResource } from './Base';
 import type { CreateWarehouseOptions, DeleteWarehouseResponse, ListWarehousesResponse, UpdateWarehouseOptions, WarehouseResponseItem } from '../types';
+import { BaseResource } from './Base';
 export declare class Warehouses extends BaseResource {
     protected shipstation: ShipStation;
     constructor(shipstation: ShipStation);

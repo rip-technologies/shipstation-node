@@ -1,12 +1,13 @@
 import type { Address } from 'cluster';
+
 import type {
+  AdvancedOptions,
+  DeliveryConfirmation,
   Dimensions,
   InsuranceOptions,
   InternationalOptions,
-  AdvancedOptions,
-  Weight,
-  DeliveryConfirmation,
-  OrderItem
+  OrderItem,
+  Weight
 } from '../models';
 import type { PaginatedRequest, PaginatedResponse } from './pagination';
 

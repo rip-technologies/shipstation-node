@@ -1,5 +1,5 @@
-import type { ListUsersOptions, ListUsersResponse } from '../types';
 import type ShipStation from '../shipstation';
+import type { ListUsersOptions, ListUsersResponse } from '../types';
 import { BaseResource } from './Base';
 
 export class Users extends BaseResource {

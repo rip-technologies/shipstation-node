@@ -1,5 +1,4 @@
 import type { DeliveryConfirmation, Order, OrderStatus } from '../models';
-import type { PaginatedRequest, PaginatedResponse } from './pagination';
 import type { Address } from '../models/Address';
 import type { AdvancedOptions } from '../models/AdvancedOptions';
 import type { Dimensions } from '../models/Dimensions';
@@ -7,6 +6,7 @@ import type { InsuranceOptions } from '../models/InsuranceOptions';
 import type { InternationalOptions } from '../models/InternationalOptions';
 import type { OrderItem } from '../models/OrderItem';
 import type { Weight } from '../models/Weight';
+import type { PaginatedRequest, PaginatedResponse } from './pagination';
 export interface OrderResponseItem extends Order {
     externallyFulfilledById: number | null;
     externallyFulfilledByName: string | null;

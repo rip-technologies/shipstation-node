@@ -1,5 +1,5 @@
-import type { SubscribeToWebhookOptions, SubscriptToWebhookResponse, ListWebhooksResponse } from '../types';
 import type ShipStation from '../shipstation';
+import type { ListWebhooksResponse, SubscribeToWebhookOptions, SubscriptToWebhookResponse } from '../types';
 import { BaseResource } from './Base';
 
 export class Webhooks extends BaseResource {

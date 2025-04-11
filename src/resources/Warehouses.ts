@@ -1,5 +1,4 @@
 import type ShipStation from '../shipstation';
-import { BaseResource } from './Base';
 import type {
   CreateWarehouseOptions,
   DeleteWarehouseResponse,
@@ -7,6 +6,7 @@ import type {
   UpdateWarehouseOptions,
   WarehouseResponseItem
 } from '../types';
+import { BaseResource } from './Base';
 
 export class Warehouses extends BaseResource {
   constructor(protected override shipstation: ShipStation) {

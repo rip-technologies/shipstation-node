@@ -1,5 +1,5 @@
-import type { CreateShipmentLabelOptions, GetRatesOptions, GetRatesResponse, ListShipmentsOptions, ListShipmentsResponse, ShipmentResponseItem, VoidShipmentLabelResponse } from '../types';
 import type ShipStation from '../shipstation';
+import type { CreateShipmentLabelOptions, GetRatesOptions, GetRatesResponse, ListShipmentsOptions, ListShipmentsResponse, ShipmentResponseItem, VoidShipmentLabelResponse } from '../types';
 import { BaseResource } from './Base';
 export declare class Shipments extends BaseResource {
     protected shipstation: ShipStation;

@@ -1,5 +1,5 @@
 import type ShipStation from '../shipstation';
-import type { ListCustomersOptions, ListCustomersResponse, CustomerResponseItem } from '../types';
+import type { CustomerResponseItem, ListCustomersOptions, ListCustomersResponse } from '../types';
 import { BaseResource } from './Base';
 export declare class Customers extends BaseResource {
     protected shipstation: ShipStation;

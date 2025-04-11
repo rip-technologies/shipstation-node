@@ -1,7 +1,7 @@
-import type { Order, CreateOrderLabelOptions, ListOrdersByTagOptions, OrderOperationResponse, MarkShippedOptions, MarkShippedResponse } from '../types';
 import type ShipStation from '../shipstation';
-import { BaseResource } from './Base';
+import type { CreateOrderLabelOptions, ListOrdersByTagOptions, MarkShippedOptions, MarkShippedResponse, Order, OrderOperationResponse } from '../types';
 import type { CreateLabelResponse, CreateOrUpdateMultipleOrdersResponse, CreateOrUpdateOrderOptions, ListOrdersOptions, ListOrdersResponse, OrderResponseItem } from '../types';
+import { BaseResource } from './Base';
 export declare class Orders extends BaseResource {
     protected shipstation: ShipStation;
     constructor(shipstation: ShipStation);

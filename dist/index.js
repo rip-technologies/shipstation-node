@@ -1,14 +1,14 @@
+import { Accounts } from './resources/Accounts';
 import { Carriers } from './resources/Carriers';
 import { Fulfillments } from './resources/Fulfillments';
 import { Orders } from './resources/Orders';
+import { Products } from './resources/Products';
 import { Shipments } from './resources/Shipments';
 import { Stores } from './resources/Stores';
+import { Users } from './resources/Users';
 import { Warehouses } from './resources/Warehouses';
 import { Webhooks } from './resources/Webhooks';
 import ShipStation from './shipstation';
-import { Products } from './resources/Products';
-import { Accounts } from './resources/Accounts';
-import { Users } from './resources/Users';
 export default class ShipStationAPI {
     constructor(options) {
         this.ss = new ShipStation(options);

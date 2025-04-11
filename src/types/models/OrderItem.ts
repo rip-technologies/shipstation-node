@@ -1,5 +1,5 @@
-import type { Weight } from './Weight';
 import type { ItemOption } from './ItemOption';
+import type { Weight } from './Weight';
 
 export interface OrderItem {
   /**

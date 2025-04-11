@@ -1,14 +1,14 @@
 import type ShipStation from '../shipstation';
 import type {
+  DeactivateStoreResponse,
+  GetRefreshRateResponse,
+  ListMarketplacesResponse,
   ListStoresOptions,
   ListStoresResponse,
-  DeactivateStoreResponse,
-  StoreResponseItem,
-  GetRefreshRateResponse,
   ReactivateStoreResponse,
   RefreshStoreOptions,
   RefreshStoreResponse,
-  ListMarketplacesResponse
+  StoreResponseItem
 } from '../types';
 import { BaseResource } from './Base';
 

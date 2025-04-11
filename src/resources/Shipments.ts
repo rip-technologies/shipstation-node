@@ -1,3 +1,4 @@
+import type ShipStation from '../shipstation';
 import type {
   CreateShipmentLabelOptions,
   GetRatesOptions,
@@ -7,7 +8,6 @@ import type {
   ShipmentResponseItem,
   VoidShipmentLabelResponse
 } from '../types';
-import type ShipStation from '../shipstation';
 import { BaseResource } from './Base';
 
 export class Shipments extends BaseResource {

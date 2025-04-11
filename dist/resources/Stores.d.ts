@@ -1,5 +1,5 @@
 import type ShipStation from '../shipstation';
-import type { ListStoresOptions, ListStoresResponse, DeactivateStoreResponse, StoreResponseItem, GetRefreshRateResponse, ReactivateStoreResponse, RefreshStoreOptions, RefreshStoreResponse, ListMarketplacesResponse } from '../types';
+import type { DeactivateStoreResponse, GetRefreshRateResponse, ListMarketplacesResponse, ListStoresOptions, ListStoresResponse, ReactivateStoreResponse, RefreshStoreOptions, RefreshStoreResponse, StoreResponseItem } from '../types';
 import { BaseResource } from './Base';
 export declare class Stores extends BaseResource {
     protected shipstation: ShipStation;

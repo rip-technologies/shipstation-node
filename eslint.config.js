@@ -1,5 +1,6 @@
 const prettierConfig = require('eslint-config-prettier');
 const prettierPlugin = require('eslint-plugin-prettier');
+const simpleImportSortPlugin = require('eslint-plugin-simple-import-sort');
 const tsEslint = require('typescript-eslint');
 
 /** @type {import('eslint').Linter.Config['files']} */
@@ -23,6 +24,7 @@ const nodeConfig = [
       reportUnusedDisableDirectives: 'error'
     },
     plugins: {
+      'simple-import-sort': simpleImportSortPlugin,
       prettier: prettierPlugin
     },
     rules: {
@@ -58,7 +60,9 @@ const nodeConfig = [
       camelcase: 'error',
       'comma-dangle': ['error', 'only-multiline'],
       curly: ['error', 'all'],
-      'prettier/prettier': 'error'
+      'prettier/prettier': 'error',
+      'simple-import-sort/exports': 'error',
+      'simple-import-sort/imports': 'error'
     }
   },
   {

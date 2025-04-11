@@ -1,5 +1,5 @@
-import type { ListFulfillmentsOptions, ListFulfillmentsResponse } from '../types';
 import type ShipStation from '../shipstation';
+import type { ListFulfillmentsOptions, ListFulfillmentsResponse } from '../types';
 import { BaseResource } from './Base';
 
 export class Fulfillments extends BaseResource {
