@@ -1,0 +1,22 @@
+name: Install Dependencies
+description: Sets the correct Node and PNPM versions and installs dependencies.
+
+runs:
+  using: composite
+  steps:
+    - name: Read pnpm Version
+      shell: bash
+      run: |
+        _PNPM_VERSION="$(awk -F'[@"]' '/"pnpm@/ {print $5}' package.json)"
+        if [[ -z "${_PNPM_VERSION}" ]]; then
+          echo "pnpm version missing from root package.json"
+          exit 1
+        fi
+        echo "PNPM_VERSION=${_PNPM_VERSION}" >> $GITHUB_ENV
+
+    - name: Install Dependencies
+      uses: wyvox/action-setup-pnpm@v3.2.0
+      with:
+        node-version-file: '.nvmrc'
+        pnpm-version: ${{ env.PNPM_VERSION }}
+        args: --frozen-lockfile --strict-peer-dependencies

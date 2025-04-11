@@ -14,9 +14,9 @@
     "@typescript-eslint/eslint-plugin": "8.29.1",
     "@typescript-eslint/parser": "8.29.1",
     "eslint": "9.24.0",
-    "eslint-plugin-simple-import-sort": "12.1.1",
     "eslint-config-prettier": "10.1.2",
     "eslint-plugin-prettier": "5.2.6",
+    "eslint-plugin-simple-import-sort": "12.1.1",
     "prettier": "3.5.3",
     "ts-node": "10.9.2",
     "typescript": "5.8.3",
@@ -29,6 +29,7 @@
   "license": "MIT",
   "main": "dist/index.js",
   "name": "shipstation-node",
+  "packageManager": "pnpm@9.15.9",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rip-technologies/shipstation-node.git"
