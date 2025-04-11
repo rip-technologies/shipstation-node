@@ -1,7 +1,7 @@
 {
-  "author": "Keenan Jaenicke <kjaenick@gmail.com>",
+  "author": "Jake Leventhal <jakeleventhal@me.com>",
   "bugs": {
-    "url": "https://github.com/kjaenicke/shipstation-node/issues"
+    "url": "https://github.com/rip-technologies/shipstation-node/issues"
   },
   "dependencies": {
     "axios": "^1.8.4",
@@ -21,7 +21,7 @@
     "typescript": "^5.8.2",
     "typescript-eslint": "^8.29.1"
   },
-  "homepage": "https://github.com/kjaenicke/shipstation-node#readme",
+  "homepage": "https://github.com/rip-technologies/shipstation-node#readme",
   "keywords": [
     "shipstation"
   ],
@@ -30,7 +30,7 @@
   "name": "shipstation-node",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kjaenicke/shipstation-node.git"
+    "url": "git+https://github.com/rip-technologies/shipstation-node.git"
   },
   "scripts": {
     "build": "tsc",
@@ -38,5 +38,5 @@
     "lint": "eslint --max-warnings 0 --config=eslint.config.js"
   },
   "types": "dist/index.d.ts",
-  "version": "0.29.0"
+  "version": "0.30.0"
 }
