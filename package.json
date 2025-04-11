@@ -10,16 +10,16 @@
   },
   "description": "Unofficial Node.js wrapper for the ShipStation API",
   "devDependencies": {
-    "@types/node": "^18",
-    "@typescript-eslint/eslint-plugin": "^8.29.1",
-    "@typescript-eslint/parser": "^8.29.1",
-    "eslint": "^9.24.0",
-    "eslint-config-prettier": "^10.1.1",
-    "eslint-plugin-prettier": "^5.2.6",
-    "prettier": "^3.5.3",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.8.2",
-    "typescript-eslint": "^8.29.1"
+    "@types/node": "20.17.10",
+    "@typescript-eslint/eslint-plugin": "8.29.1",
+    "@typescript-eslint/parser": "8.29.1",
+    "eslint": "9.24.0",
+    "eslint-config-prettier": "10.1.2",
+    "eslint-plugin-prettier": "5.2.6",
+    "prettier": "3.5.3",
+    "ts-node": "10.9.2",
+    "typescript": "5.8.3",
+    "typescript-eslint": "8.29.1"
   },
   "homepage": "https://github.com/rip-technologies/shipstation-node#readme",
   "keywords": [
@@ -34,7 +34,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "format": "npm run lint -- --fix",
+    "format": "pnpm run lint --fix",
     "lint": "eslint --max-warnings 0 --config=eslint.config.js"
   },
   "types": "dist/index.d.ts",
