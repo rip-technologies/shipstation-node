@@ -2,48 +2,52 @@
 
 Unofficial ShipStation API Wrapper for Node.js
 
-This project is currently a work in progress and contributors are welcome! 👋
-
 ## Usage
-
-- Set the following env variables for our ShipStation account:
-  - SHIPSTATION_API_KEY (your ShipStation API Key)
-  - SHIPSTATION_API_SECRET (your ShipStation API secret)
 
 ```ts
 import ShipStation from 'shipstation-node';
 
 // Create instance
-const shipstation = new ShipStation();
+const shipstation = new ShipStation({
+  credentials: {
+    // For making V1 API calls
+    v1: { apiKey, apiSecret },
+    // For making V2 API calls
+    v2: { apiKey }
+  }
+});
 
 // Get all orders
-const orders = await shipstation.orders.list();
+const orders = await shipstation.v1.orders.list();
 
-// Get order by id
-const order = await shipstation.orders.get(1244);
+// Get all tags
+const order = await shipstation.v2.tags.get();
 ```
 
-- Optionally, set ShipStation credentials through the options:
-  - `apiKey` (your ShipStation API Key)
-  - `apiSecret` (your ShipStation API secret)
+You do not need to set both V1 and V2 credentials. You only need to set the credentials for the API calls you are making.
+
+You can also create ShipStation mock API calls by using the `mock` parameter. This will make real API calls, but to the mock API URL that ShipStation provides. Note that this only available for the V2 API.
 
 ```ts
 const shipstation = new ShipStation({
-  apiKey: '<key>',
-  apiSecret: '<secret>'
+  credentials: { v2: { mock: true } }
 });
 ```
 
-- Optionally, Retry ShipStation API failures via:
-  - Set retry `true` to enable default options
-  - OR provide an object with any options supported by [axios-retry](https://www.npmjs.com/package/axios-retry)
+You may also retry ShipStation API failures automatically by setting `retryConfig` with any options supported by [axios-retry](https://www.npmjs.com/package/axios-retry).
 
 ```ts
 const shipstation = new ShipStation({
-  // default retry config
-  retry: true,
+  // ...config
+  retryConfig: { retries: 3 }
+});
+```
 
-  // OR custom
-  retry: { retries: 3 }
+You may also modify the underlying [axios](https://www.npmjs.com/package/axios) configurations using `requestConfig`.
+
+```ts
+const shipstation = new ShipStation({
+  // ...config
+  requestConfig: { timeout: 3000 }
 });
 ```

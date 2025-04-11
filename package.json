@@ -6,7 +6,7 @@
   "dependencies": {
     "axios": "^1.8.4",
     "axios-retry": "^4.5.0",
-    "stopcock": "^1.0.0"
+    "limiter": "^3.0.0"
   },
   "description": "Unofficial Node.js wrapper for the ShipStation API",
   "devDependencies": {
@@ -39,5 +39,5 @@
     "lint": "eslint --max-warnings 0 --config=eslint.config.js"
   },
   "types": "dist/index.d.ts",
-  "version": "0.30.0"
+  "version": "1.0.0"
 }
