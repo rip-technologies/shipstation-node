@@ -1,0 +1,30 @@
+name: Publish
+
+run-name: Publish - ${{ github.ref_name }}
+
+concurrency:
+  group: workflow-${{ github.workflow }}-branch-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4.1.1
+
+      - name: Install Dependencies
+        uses: ./.github/actions/install-dependencies
+
+      - run: pnpm run lint
+
+      - run: pnpm run build --noEmit
+
+      - uses: JS-DevTools/npm-publish@v3.1.1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
