@@ -9,6 +9,7 @@ import { PackagePickups } from './resources/PackagePickups';
 import { Tags } from './resources/Tags';
 import { Tracking } from './resources/Tracking';
 import { Warehouses } from './resources/Warehouses';
+import { Webhooks } from './resources/Webhooks';
 
 // 200 requests per minute - https://docs.shipstation.com/rate-limits
 const RATE_LIMIT_OPTS: RateLimiterOpts = {
@@ -24,7 +25,7 @@ export class V2API extends BaseAPI {
   public tags: Tags;
   public tracking: Tracking;
   public warehouses: Warehouses;
-
+  public webhooks: Webhooks;
   constructor(options: ShipStationOptions) {
     const credentials = options.credentials.v2;
     const baseUrl = credentials?.mock
@@ -46,5 +47,6 @@ export class V2API extends BaseAPI {
     this.tags = new Tags(this);
     this.tracking = new Tracking(this);
     this.warehouses = new Warehouses(this);
+    this.webhooks = new Webhooks(this);
   }
 }

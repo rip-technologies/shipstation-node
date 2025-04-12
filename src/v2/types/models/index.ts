@@ -6,3 +6,4 @@ export * from './PackagePickup';
 export * from './PackageType';
 export * from './Tag';
 export * from './Warehouse';
+export * from './Webhook';
