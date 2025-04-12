@@ -36,6 +36,8 @@ export class Carriers extends BaseResource {
   }
 
   /**
+   * [Official Documentation](https://docs.shipstation.com/openapi/carriers/list_carriers)
+   *
    * List all carriers that have been added to this account.
    *
    * @returns A list of carriers

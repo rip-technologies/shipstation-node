@@ -26,13 +26,13 @@ export type CarrierCode =
 
 export interface CarrierAdvancedOption {
   /**
-   * Name of advanced option (non-empty)
+   * Name of advanced option
    *
    * @example "contains_alcohol"
    */
   name: string;
   /**
-   * Default value of option (non-empty)
+   * Default value of option
    *
    * @example "false"
    */
@@ -60,13 +60,13 @@ export interface CarrierService {
    */
   carrier_code: CarrierCode;
   /**
-   * service code (non-empty)
+   * service code
    *
    * @example "usps_media_mail"
    */
   service_code: string;
   /**
-   * User friendly service name (non-empty)
+   * User friendly service name
    *
    * @example "USPS First Class Mail"
    */
