@@ -2,7 +2,12 @@ import type { RateLimiterOpts } from 'limiter';
 
 import type { ShipStationOptions } from '../BaseAPI';
 import BaseAPI from '../BaseAPI';
+import { Carriers } from './resources/Carriers';
+import { Downloads } from './resources/Downloads';
+import { Manifests } from './resources/Manifests';
 import { Tags } from './resources/Tags';
+import { Tracking } from './resources/Tracking';
+import { Warehouses } from './resources/Warehouses';
 
 // 200 requests per minute - https://docs.shipstation.com/rate-limits
 const RATE_LIMIT_OPTS: RateLimiterOpts = {
@@ -11,7 +16,12 @@ const RATE_LIMIT_OPTS: RateLimiterOpts = {
 };
 
 export class V2API extends BaseAPI {
+  public carriers: Carriers;
+  public downloads: Downloads;
+  public manifests: Manifests;
   public tags: Tags;
+  public tracking: Tracking;
+  public warehouses: Warehouses;
 
   constructor(options: ShipStationOptions) {
     const credentials = options.credentials.v2;
@@ -27,6 +37,11 @@ export class V2API extends BaseAPI {
       };
     }
 
+    this.carriers = new Carriers(this);
+    this.downloads = new Downloads(this);
+    this.manifests = new Manifests(this);
     this.tags = new Tags(this);
+    this.tracking = new Tracking(this);
+    this.warehouses = new Warehouses(this);
   }
 }
