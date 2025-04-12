@@ -2,6 +2,11 @@ import type BaseAPI from '../../BaseAPI';
 import { BaseResource } from '../../BaseResource';
 import type { CreateTagResponse, GetTagsResponse } from '../types';
 
+/**
+ * [Official Documentation](https://docs.shipstation.com/openapi/tags)
+ *
+ * Tags are text-based identifiers you can add to shipments to help in your shipment management workflows.
+ */
 export class Tags extends BaseResource {
   constructor(shipstation: BaseAPI) {
     super(shipstation, 'tags');
