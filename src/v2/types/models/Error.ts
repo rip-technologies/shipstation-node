@@ -70,6 +70,12 @@ export interface ShipStationAPIError {
 }
 
 export interface ErrorResponse {
+  /**
+   * A UUID (a.k.a. GUID) that uniquely identifies a resource
+   *
+   * @example "aa3d8e8e-462b-4476-9618-72db7f7b7009"
+   */
   requestId: string;
+  /** The errors associated with the failed API call */
   errors: Array<ShipStationAPIError>;
 }
