@@ -5,6 +5,7 @@ import BaseAPI from '../BaseAPI';
 import { Carriers } from './resources/Carriers';
 import { Downloads } from './resources/Downloads';
 import { Manifests } from './resources/Manifests';
+import { PackagePickups } from './resources/PackagePickups';
 import { Tags } from './resources/Tags';
 import { Tracking } from './resources/Tracking';
 import { Warehouses } from './resources/Warehouses';
@@ -19,6 +20,7 @@ export class V2API extends BaseAPI {
   public carriers: Carriers;
   public downloads: Downloads;
   public manifests: Manifests;
+  public packagePickups: PackagePickups;
   public tags: Tags;
   public tracking: Tracking;
   public warehouses: Warehouses;
@@ -40,6 +42,7 @@ export class V2API extends BaseAPI {
     this.carriers = new Carriers(this);
     this.downloads = new Downloads(this);
     this.manifests = new Manifests(this);
+    this.packagePickups = new PackagePickups(this);
     this.tags = new Tags(this);
     this.tracking = new Tracking(this);
     this.warehouses = new Warehouses(this);
