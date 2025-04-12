@@ -28,8 +28,9 @@ export class Carriers extends BaseResource {
    */
   public async get(carrierCode: string): Promise<CarrierResponseItem> {
     return this.shipstation.request<CarrierResponseItem>({
-      url: `${this.baseUrl}?carrierCode=${carrierCode}`,
-      method: 'GET'
+      url: this.baseUrl,
+      method: 'GET',
+      params: { carrierCode }
     });
   }
 
@@ -86,8 +87,9 @@ export class Carriers extends BaseResource {
    */
   public async listPackages(carrierCode: string): Promise<ListPackagesResponse> {
     return this.shipstation.request<ListPackagesResponse>({
-      url: `${this.baseUrl}/listpackages?carrierCode=${carrierCode}`,
-      method: 'GET'
+      url: `${this.baseUrl}/listpackages`,
+      method: 'GET',
+      params: { carrierCode }
     });
   }
 
@@ -105,8 +107,9 @@ export class Carriers extends BaseResource {
    */
   public async listServices(carrierCode: string): Promise<ListServicesResponse> {
     return this.shipstation.request<ListServicesResponse>({
-      url: `${this.baseUrl}/listservices?carrierCode=${carrierCode}`,
-      method: 'GET'
+      url: `${this.baseUrl}/listservices`,
+      method: 'GET',
+      params: { carrierCode }
     });
   }
 }
