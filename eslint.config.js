@@ -57,7 +57,6 @@ const nodeConfig = [
       '@typescript-eslint/restrict-template-expressions': ['error', { allowBoolean: true, allowNumber: true }],
       '@typescript-eslint/switch-exhaustiveness-check': ['error', { considerDefaultExhaustiveForUnions: true }],
       'arrow-parens': ['error', 'always'],
-      camelcase: 'error',
       'comma-dangle': ['error', 'only-multiline'],
       curly: ['error', 'all'],
       'prettier/prettier': 'error',

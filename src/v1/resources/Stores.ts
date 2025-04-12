@@ -105,8 +105,9 @@ export class Stores extends BaseResource {
    */
   public async getRefreshRate(storeId: number): Promise<GetRefreshRateResponse> {
     return this.shipstation.request<GetRefreshRateResponse>({
-      url: `${this.baseUrl}/getrefreshstatus?storeId=${storeId}`,
-      method: 'GET'
+      url: `${this.baseUrl}/getrefreshstatus`,
+      method: 'GET',
+      params: { storeId }
     });
   }
 
