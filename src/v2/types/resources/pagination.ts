@@ -13,13 +13,13 @@ export interface PaginatedRequest {
    * @default 25
    * @example 50
    */
-  pageSize?: number;
+  page_size?: number;
   /**
    * Controls the sort order of the query.
    *
    * @default "desc"
    */
-  sortDir?: 'asc' | 'desc';
+  sort_dir?: 'asc' | 'desc';
 }
 
 export interface OptionalLink {

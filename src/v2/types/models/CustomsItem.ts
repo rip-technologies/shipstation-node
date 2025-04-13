@@ -1,4 +1,4 @@
-import type { Weight } from './Rate';
+import type { Weight } from './Shipment';
 
 export interface CustomsItem {
   /**

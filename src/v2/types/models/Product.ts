@@ -1,5 +1,6 @@
 import type { DangerousGood } from './DangerousGood';
-import type { MonetaryValue, Weight } from './Rate';
+import type { MonetaryValue } from './Rate';
+import type { Weight } from './Shipment';
 
 export interface Product {
   /**

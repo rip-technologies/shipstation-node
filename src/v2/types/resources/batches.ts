@@ -1,7 +1,9 @@
-import type { Batch, BatchStatus } from '../models';
+import type { Batch, BatchStatus, Label } from '../models';
 import type { PaginatedRequest, PaginatedResponse } from './pagination';
 
-interface BatchProcessLabelsOptions extends Pick<Batch, 'label_layout' | 'label_format'> {
+interface BatchProcessLabelsOptions
+  extends Pick<Batch, 'label_layout' | 'label_format'>,
+    Partial<Pick<Label, 'display_scheme'>> {
   /**
    * When 'true', the batch will be enqueued for processing
    *
@@ -14,12 +16,6 @@ interface BatchProcessLabelsOptions extends Pick<Batch, 'label_layout' | 'label_
    * @example "2018-09-23T15:00:00.000Z"
    */
   ship_date?: string;
-  /**
-   * The display format that the label should be shown in.
-   *
-   * @default "label"
-   */
-  display_scheme?: 'label' | 'qr_code' | 'label_and_qr_code' | 'paperless' | 'label_and_paperless';
 }
 
 export interface ListBatchesOptions extends PaginatedRequest {

@@ -1,6 +1,7 @@
 import type { PackageTypeDimensions } from './PackageType';
 import type { Product } from './Product';
-import type { MonetaryValue, Weight } from './Rate';
+import type { MonetaryValue } from './Rate';
+import type { Weight } from './Shipment';
 
 interface LabelMessages {
   /**

@@ -8,6 +8,7 @@ import { Downloads } from './resources/Downloads';
 import { Inventory } from './resources/Inventory';
 import { InventoryLocations } from './resources/InventoryLocations';
 import { InventoryWarehouses } from './resources/InventoryWarehouses';
+import { Labels } from './resources/Labels';
 import { Manifests } from './resources/Manifests';
 import { PackagePickups } from './resources/PackagePickups';
 import { PackageTypes } from './resources/PackageTypes';
@@ -30,6 +31,7 @@ export class V2API extends BaseAPI {
   public inventory: Inventory;
   public inventoryLocations: InventoryLocations;
   public inventoryWarehouses: InventoryWarehouses;
+  public labels: Labels;
   public manifests: Manifests;
   public packagePickups: PackagePickups;
   public packageTypes: PackageTypes;
@@ -59,6 +61,7 @@ export class V2API extends BaseAPI {
     this.inventory = new Inventory(this);
     this.inventoryLocations = new InventoryLocations(this);
     this.inventoryWarehouses = new InventoryWarehouses(this);
+    this.labels = new Labels(this);
     this.manifests = new Manifests(this);
     this.packagePickups = new PackagePickups(this);
     this.packageTypes = new PackageTypes(this);
