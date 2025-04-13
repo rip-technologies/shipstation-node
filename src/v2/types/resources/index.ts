@@ -4,6 +4,7 @@ export * from './downloads';
 export * from './inventory';
 export * from './inventoryLocations';
 export * from './inventoryWarehouses';
+export * from './labels';
 export * from './manifests';
 export * from './packagePickups';
 export * from './packageTypes';

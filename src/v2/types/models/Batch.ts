@@ -1,11 +1,6 @@
 import type { OptionalLink } from '../resources/pagination';
 import type { ShipStationAPIError } from './Error';
-import type { LabelDownload } from './LabelDownload';
-import type { PaperlessDownload } from './PaperlessDownload';
-
-export type LabelLayout = '4x6' | 'letter';
-
-export type LabelFormat = 'pdf' | 'png' | 'zpl';
+import type { Label } from './Label';
 
 export type BatchStatus =
   | 'open'
@@ -17,27 +12,8 @@ export type BatchStatus =
   | 'notifying'
   | 'invalid';
 
-export interface Batch {
-  /**
-   * The available layouts (sizes) in which shipping labels can be downloaded. The label format determines which sizes
-   * are supported. `4x6` is supported for all label formats, whereas `letter` (8.5" x 11") is only supported for `pdf`
-   * format.
-   *
-   * @default "4x6"
-   */
-  label_layout: LabelLayout;
-  /**
-   * The possible file formats in which shipping labels can be downloaded. We recommend `pdf` format because it is
-   * supported by all carriers, whereas some carriers do not support the `png` or `zpl` formats.
-   *
-   * - `pdf`: All carriers
-   * - `png`: `fedex` | `stamps_com` | `ups` | `usps`
-   * - `zpl`: `access_worldwide` | `apc` | `asendia` | `dhl_global_mail` | `dhl_express` | `dhl_express_australia` |
-   * `dhl_express_canada` | `dhl_express_worldwide` | `dhl_express_uk` | `dpd` | `endicia` | `fedex` | `fedex_uk` | `firstmile` | `imex` | `newgistics` | `ontrac` | `rr_donnelley` | `stamps_com` | `ups` | `usps`
-   *
-   * @default "pdf"
-   */
-  label_format: LabelFormat;
+export interface Batch
+  extends Pick<Label, 'label_layout' | 'label_format' | 'label_download' | 'form_download' | 'paperless_download'> {
   /**
    * A string that uniquely identifies a ShipStation resource, such as a batch, label, shipment, etc.
    * `^se(-[a-z0-9]+)+$`
@@ -114,11 +90,5 @@ export interface Batch {
   batch_labels_url: OptionalLink;
   /** A link to a related resource, or an empty object if there is no resource to link to */
   batch_errors_url: OptionalLink;
-  /** Reference to the various downloadable file formats for the generated label */
-  label_download: LabelDownload;
-  /** A link to a related resource, or an empty object if there is no resource to link to */
-  form_download: OptionalLink;
-  /** The paperless details which may contain elements like `href`, `instructions` and `handoff_code`. */
-  paperless_download: PaperlessDownload;
   status: BatchStatus;
 }

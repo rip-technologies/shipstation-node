@@ -6,6 +6,7 @@ export * from './DangerousGood';
 export * from './Error';
 export * from './InventoryLocation';
 export * from './InventoryWarehouse';
+export * from './Label';
 export * from './LabelDownload';
 export * from './Manifest';
 export * from './Package';
