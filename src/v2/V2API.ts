@@ -4,6 +4,9 @@ import type { ShipStationOptions } from '../BaseAPI';
 import BaseAPI from '../BaseAPI';
 import { Carriers } from './resources/Carriers';
 import { Downloads } from './resources/Downloads';
+import { Inventory } from './resources/Inventory';
+import { InventoryLocations } from './resources/InventoryLocations';
+import { InventoryWarehouses } from './resources/InventoryWarehouses';
 import { Manifests } from './resources/Manifests';
 import { PackagePickups } from './resources/PackagePickups';
 import { Rates } from './resources/Rates';
@@ -21,6 +24,9 @@ const RATE_LIMIT_OPTS: RateLimiterOpts = {
 export class V2API extends BaseAPI {
   public carriers: Carriers;
   public downloads: Downloads;
+  public inventory: Inventory;
+  public inventoryLocations: InventoryLocations;
+  public inventoryWarehouses: InventoryWarehouses;
   public manifests: Manifests;
   public packagePickups: PackagePickups;
   public rates: Rates;
@@ -45,6 +51,9 @@ export class V2API extends BaseAPI {
 
     this.carriers = new Carriers(this);
     this.downloads = new Downloads(this);
+    this.inventory = new Inventory(this);
+    this.inventoryLocations = new InventoryLocations(this);
+    this.inventoryWarehouses = new InventoryWarehouses(this);
     this.manifests = new Manifests(this);
     this.packagePickups = new PackagePickups(this);
     this.rates = new Rates(this);
