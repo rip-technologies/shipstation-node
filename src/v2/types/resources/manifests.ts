@@ -106,7 +106,6 @@ export interface CreateManifestResponse {
    * @example "se-28529731"
    */
   manifest_request_id: string;
-  /** The possible statuses of a manifest request */
   status: 'in_progress' | 'completed';
   /**
    * A UUID (a.k.a. GUID) that uniquely identifies a resource

@@ -24,7 +24,7 @@ export type CarrierCode =
   | 'usps'
   | 'zpl';
 
-export interface CarrierAdvancedOption {
+export interface CarrierAdvancedOptions {
   /**
    * Name of advanced option
    *
@@ -177,5 +177,5 @@ export interface Carrier {
   /**
    * A list of options that are available to that carrier
    */
-  options: Array<CarrierAdvancedOption>;
+  options: Array<CarrierAdvancedOptions>;
 }

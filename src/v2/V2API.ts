@@ -6,6 +6,7 @@ import { Carriers } from './resources/Carriers';
 import { Downloads } from './resources/Downloads';
 import { Manifests } from './resources/Manifests';
 import { PackagePickups } from './resources/PackagePickups';
+import { Rates } from './resources/Rates';
 import { Tags } from './resources/Tags';
 import { Tracking } from './resources/Tracking';
 import { Warehouses } from './resources/Warehouses';
@@ -22,10 +23,12 @@ export class V2API extends BaseAPI {
   public downloads: Downloads;
   public manifests: Manifests;
   public packagePickups: PackagePickups;
+  public rates: Rates;
   public tags: Tags;
   public tracking: Tracking;
   public warehouses: Warehouses;
   public webhooks: Webhooks;
+
   constructor(options: ShipStationOptions) {
     const credentials = options.credentials.v2;
     const baseUrl = credentials?.mock
@@ -44,6 +47,7 @@ export class V2API extends BaseAPI {
     this.downloads = new Downloads(this);
     this.manifests = new Manifests(this);
     this.packagePickups = new PackagePickups(this);
+    this.rates = new Rates(this);
     this.tags = new Tags(this);
     this.tracking = new Tracking(this);
     this.warehouses = new Warehouses(this);

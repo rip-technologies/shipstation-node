@@ -4,6 +4,7 @@ export interface PackageTypeDimensions {
    *
    * @default "inch"
    */
+  //TODO: this is "centimeter" in the docs
   unit: 'inch' | 'cm';
   /**
    * The length of the package, in the specified unit (>= 0)

@@ -1,4 +1,4 @@
-import type { Carrier, CarrierAdvancedOption, CarrierService, ErrorResponse, PackageType } from '../models';
+import type { Carrier, CarrierAdvancedOptions, CarrierService, ErrorResponse, PackageType } from '../models';
 
 export type GetCarrierByIdResponse = Carrier;
 
@@ -13,7 +13,7 @@ export interface ListCarriersResponseError extends ErrorResponse {
 
 export interface GetCarrierOptionsResponse {
   /** An array of carrier options */
-  options: Array<CarrierAdvancedOption>;
+  options: Array<CarrierAdvancedOptions>;
 }
 
 export interface ListCarrierServicesResponse {
