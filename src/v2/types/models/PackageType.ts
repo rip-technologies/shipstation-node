@@ -51,11 +51,11 @@ export interface PackageType {
   /**
    * The dimensions of a package
    */
-  dimensions?: Array<PackageTypeDimensions>;
+  dimensions?: PackageTypeDimensions;
   /**
    * Provides a helpful description for the custom package. (<= 500 characters)
    *
    * @example "Packaging for laptops"
    */
-  description: string | null;
+  description?: string | null;
 }

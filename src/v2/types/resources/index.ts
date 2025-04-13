@@ -5,6 +5,7 @@ export * from './inventoryLocations';
 export * from './inventoryWarehouses';
 export * from './manifests';
 export * from './packagePickups';
+export * from './packageTypes';
 export * from './rates';
 export * from './tags';
 export * from './warehouses';
