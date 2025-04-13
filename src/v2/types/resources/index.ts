@@ -1,3 +1,4 @@
+export * from './batches';
 export * from './carriers';
 export * from './downloads';
 export * from './inventory';
