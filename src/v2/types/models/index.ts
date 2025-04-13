@@ -3,6 +3,8 @@ export * from './Carrier';
 export * from './CustomsItem';
 export * from './DangerousGood';
 export * from './Error';
+export * from './InventoryLocation';
+export * from './InventoryWarehouse';
 export * from './Manifest';
 export * from './Package';
 export * from './PackagePickup';
