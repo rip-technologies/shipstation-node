@@ -1,16 +1,12 @@
 import type {
   Address,
   AddressResidentialIndicator,
-  AdvancedShipmentOptions,
   CustomsItem,
   DeliveryConfirmation,
   MonetaryValue,
-  Package,
   PackageTypeDimensions,
   Rate,
-  ShipmentItem,
-  Tag,
-  TaxIdentifier,
+  Shipment,
   Weight
 } from '../models';
 
@@ -53,44 +49,6 @@ interface GetRatesByShipmentIdOptions extends GetRatesBaseRequest {
    * @example "se-28529731"
    */
   shipment_id: string;
-}
-
-interface ShippingAddress
-  extends Pick<
-      Address,
-      | 'name'
-      | 'phone'
-      | 'address_line1'
-      | 'city_locality'
-      | 'state_province'
-      | 'postal_code'
-      | 'country_code'
-      | 'address_residential_indicator'
-    >,
-    Partial<Pick<Address, 'email' | 'company_name' | 'address_line2' | 'address_line3'>> {
-  /**
-   * Additional text about how to handle the shipment at this address.
-   *
-   * @example "any instructions"
-   */
-  instructions?: string | null;
-  geolocation?: Array<{
-    /**
-     * Enum of available type of geolocation items:
-     *
-     * - 'what3words' functionality allows to specify a location by providing 3 words that have been assign to the
-     * specific location see [link](https://what3words.com/business) for more details.
-     *
-     * @example "what3words"
-     */
-    type: 'what3words';
-    /**
-     * value of the geolocation item
-     *
-     * @example "cats.with.thumbs"
-     */
-    value: string;
-  }>;
 }
 
 interface InvoiceAdditionalDetails {
@@ -218,122 +176,11 @@ export type OrderSourceName =
   | 'woo_commerce'
   | 'volusion';
 
-interface AddressValidatingShipment {
+interface AddressValidatingShipment extends Shipment {
   /**
    * @default "no_validation"
    */
   validate_address?: 'no_validation' | 'validate_only' | 'validate_and_clean';
-  /**
-   * A string that uniquely identifies a ShipStation resource, such as a carrier, label, shipment, etc. [1-25]
-   * characters `^se(-[a-z0-9]+)+$`
-   *
-   * @example "se-28529731"
-   */
-  carrier_id: string;
-  /**
-   * A carrier service such as `fedex_ground`, `usps_first_class_mail`, `flat_rate_envelope`, etc.
-   * `^[a-z0-9]+(_[a-z0-9-]+)* ?$`
-   *
-   * @example "usps_first_class_mail"
-   */
-  service_code: string;
-  /**
-   * A string that uniquely identifies a ShipStation resource, such as a carrier, label, shipment, etc. [1-25]
-   * characters `^se(-[a-z0-9]+)+$`
-   *
-   * @example "se-28529731"
-   */
-  shipping_rule_id?: string;
-  /**
-   * ID that the Order Source assigned
-   *
-   * @example "1232434"
-   */
-  external_order_id?: string | null;
-  /**
-   * Describe the packages included in this shipment as related to potential metadata that was imported from external
-   * order sources
-   *
-   * @default []
-   */
-  items?: Array<Partial<ShipmentItem>>;
-  tax_identifiers?: Array<TaxIdentifier>;
-  /**
-   * A unique user-defined key to identify a shipment. This can be used to retrieve the shipment. (<= 50 characters)
-   *
-   * **Warning: The `external_shipment_id` is limited to 50 characters. Any additional characters will be truncated.**
-   *
-   * @example "1234556"
-   */
-  external_shipment_id?: string | null;
-  /**
-   * A non-unique user-defined number used to identify a shipment. If undefined, this will match the
-   * external_shipment_id of the shipment. (<= 50 characters)
-   *
-   * **Warning: The `shipment_number` is limited to 50 characters. Any additional characters will be truncated.**
-   *
-   * @example "se-1234545"
-   */
-  shipment_number?: string | null;
-  /**
-   * An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string that represents a date, but not a specific time. The
-   * value may contain a time component, but it will be set to `00:00:00` UTC by ShipStation .
-   *
-   * @example "2018-09-23"
-   */
-  ship_date?: string;
-  /** A complete or partial mailing address. */
-  ship_to: ShippingAddress;
-  /** A complete or partial mailing address. */
-  ship_from: Omit<ShippingAddress, 'geolocation'>;
-  /**
-   * A string that uniquely identifies a ShipStation resource, such as a carrier, label, shipment, etc. [1-25]
-   * characters `^se(-[a-z0-9]+)+$`
-   *
-   * @default null
-   * @example "se-28529731"
-   */
-  warehouse_id?: string | null;
-  /** A complete or partial mailing address. */
-  return_to?: Omit<ShippingAddress, 'geolocation'>;
-  /**
-   * An optional indicator if the shipment is intended to be a return. Defaults to false if not provided.
-   *
-   * @default false
-   * @example true
-   */
-  is_return?: boolean | null;
-  /**
-   * @default "none"
-   */
-  confirmation?: DeliveryConfirmation;
-  /**
-   * Options for international shipments, such as customs declarations.
-   *
-   * @default null
-   */
-  customs?: InternationalShipmentOptions | null;
-  /** Advanced shipment options */
-  advanced_options?: AdvancedShipmentOptions;
-  /**
-   * @default "none"
-   */
-  insurance_provider?: InsuranceProvider;
-  order_source_code?: OrderSourceName;
-  /**
-   * The packages in the shipment.
-   *
-   * **Note: Some carriers only allow one package per shipment. If you attempt to create a multi-package shipment for a
-   * carrier that doesn't allow it, an error will be returned.**
-   */
-  packages?: Array<Partial<Omit<Package, 'weight'>> & Pick<Package, 'weight'>>;
-  /**
-   * Calculate a rate for this shipment with the requested carrier using a ratecard that differs from the default. Only
-   * supported for UPS and USPS.
-   *
-   * @example "retail"
-   */
-  comparison_rate_type?: string | null;
 }
 
 interface GetRatesByShipmentOptions extends GetRatesBaseRequest {
@@ -379,53 +226,7 @@ interface RatesInformation {
   status: 'working' | 'completed' | 'partial' | 'error';
 }
 
-export interface GetRatesResponse
-  extends Required<Omit<AddressValidatingShipment, 'validate_address' | 'items' | 'packages'>> {
-  /**
-   * A string that uniquely identifies a ShipStation resource, such as a carrier, label, shipment, etc. [1-25]
-   * characters `^se(-[a-z0-9]+)+$`
-   *
-   * @example "se-28529731"
-   */
-  shipment_id: string;
-  /**
-   * Describe the packages included in this shipment as related to potential metadata that was imported from external
-   * order sources
-   *
-   * @default []
-   */
-  items: Array<ShipmentItem>;
-  /**
-   * An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string that represents a date and time.
-   *
-   * @example "2018-09-23T00:00:00Z"
-   */
-  created_at: string;
-  /**
-   * An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string that represents a date and time.
-   *
-   * @example "2018-09-23T00:00:00Z"
-   */
-  modified_at: string;
-  /**
-   * @default "pending"
-   */
-  shipment_status: 'pending' | 'processing' | 'label_purchased' | 'cancelled';
-  /**
-   * Arbitrary tags associated with this shipment. Tags can be used to categorize shipments, and shipments can be queried by their tags.
-   *
-   * @default []
-   */
-  tags: Array<Tag>;
-  /**
-   * The packages in the shipment.
-   *
-   * **Note: Some carriers only allow one package per shipment. If you attempt to create a multi-package shipment for a
-   * carrier that doesn't allow it, an error will be returned.**
-   */
-  packages: Array<Package>;
-  /** The weight of a package */
-  total_weight: Weight;
+export interface GetRatesResponse extends Shipment {
   /** A rates information resource */
   rate_response: RatesInformation;
 }

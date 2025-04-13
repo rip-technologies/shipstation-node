@@ -15,6 +15,7 @@ export * from './PackageType';
 export * from './PaperlessDownload';
 export * from './Product';
 export * from './Rate';
+export * from './Shipment';
 export * from './ShipmentItem';
 export * from './Tag';
 export * from './TaxIdentifier';
