@@ -36,7 +36,6 @@ export interface Webhook {
    * @example "http://api.shipstation.com/v2/labels/se-28529731"
    */
   url: string;
-  /** The possible webook event values */
   event: WebhookEventType;
   /** Array of custom webhook headers */
   headers: Array<WebhookHeader>;

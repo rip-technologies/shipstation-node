@@ -1,3 +1,5 @@
+export type AddressResidentialIndicator = 'unknown' | 'yes' | 'no';
+
 export interface Address {
   /**
    * The name of a contact person at this address. This field may be set instead of - or in addition to - the
@@ -26,7 +28,8 @@ export interface Address {
    */
   company_name: string | null;
   /**
-   * The first line of the street address. For some addresses, this may be the only line. Other addresses may require 2 or 3 lines.
+   * The first line of the street address. For some addresses, this may be the only line. Other addresses may require 2
+   * or 3 lines.
    *
    * @example "1999 Bishop Grandin Blvd."
    */
@@ -74,5 +77,5 @@ export interface Address {
    * @default "unknown"
    * @example "no"
    */
-  address_residential_indicator: 'unknown' | 'yes' | 'no';
+  address_residential_indicator: AddressResidentialIndicator;
 }
