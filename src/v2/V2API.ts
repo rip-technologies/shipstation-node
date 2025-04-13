@@ -2,6 +2,7 @@ import type { RateLimiterOpts } from 'limiter';
 
 import type { ShipStationOptions } from '../BaseAPI';
 import BaseAPI from '../BaseAPI';
+import { Batches } from './resources/Batches';
 import { Carriers } from './resources/Carriers';
 import { Downloads } from './resources/Downloads';
 import { Inventory } from './resources/Inventory';
@@ -23,6 +24,7 @@ const RATE_LIMIT_OPTS: RateLimiterOpts = {
 };
 
 export class V2API extends BaseAPI {
+  public batches: Batches;
   public carriers: Carriers;
   public downloads: Downloads;
   public inventory: Inventory;
@@ -51,6 +53,7 @@ export class V2API extends BaseAPI {
       };
     }
 
+    this.batches = new Batches(this);
     this.carriers = new Carriers(this);
     this.downloads = new Downloads(this);
     this.inventory = new Inventory(this);

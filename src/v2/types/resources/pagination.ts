@@ -17,12 +17,12 @@ export interface PaginatedRequest {
   /**
    * Controls the sort order of the query.
    *
-   * @default 'desc'
+   * @default "desc"
    */
   sortDir?: 'asc' | 'desc';
 }
 
-export interface PaginatedLink {
+export interface OptionalLink {
   href: string;
   type?: 'parent' | 'child';
 }
@@ -32,9 +32,9 @@ export interface PaginatedResponse {
   pages: number;
   page: number;
   links: {
-    first: PaginatedLink;
-    last: PaginatedLink;
-    next?: PaginatedLink;
-    prev?: PaginatedLink;
+    first: OptionalLink;
+    last: OptionalLink;
+    next?: OptionalLink;
+    prev?: OptionalLink;
   };
 }
