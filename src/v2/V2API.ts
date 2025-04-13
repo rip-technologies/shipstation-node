@@ -13,6 +13,7 @@ import { Manifests } from './resources/Manifests';
 import { PackagePickups } from './resources/PackagePickups';
 import { PackageTypes } from './resources/PackageTypes';
 import { Rates } from './resources/Rates';
+import { Shipments } from './resources/Shipments';
 import { Tags } from './resources/Tags';
 import { Tracking } from './resources/Tracking';
 import { Warehouses } from './resources/Warehouses';
@@ -36,6 +37,7 @@ export class V2API extends BaseAPI {
   public packagePickups: PackagePickups;
   public packageTypes: PackageTypes;
   public rates: Rates;
+  public shipments: Shipments;
   public tags: Tags;
   public tracking: Tracking;
   public warehouses: Warehouses;
@@ -66,6 +68,7 @@ export class V2API extends BaseAPI {
     this.packagePickups = new PackagePickups(this);
     this.packageTypes = new PackageTypes(this);
     this.rates = new Rates(this);
+    this.shipments = new Shipments(this);
     this.tags = new Tags(this);
     this.tracking = new Tracking(this);
     this.warehouses = new Warehouses(this);
