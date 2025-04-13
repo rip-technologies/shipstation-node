@@ -9,6 +9,7 @@ export * from './manifests';
 export * from './packagePickups';
 export * from './packageTypes';
 export * from './rates';
+export * from './shipments';
 export * from './tags';
 export * from './warehouses';
 export * from './webhooks';

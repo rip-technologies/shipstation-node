@@ -189,7 +189,7 @@ interface GetRatesByShipmentOptions extends GetRatesBaseRequest {
 
 export type GetRatesOptions = GetRatesByShipmentIdOptions | GetRatesByShipmentOptions;
 
-interface RatesInformation {
+export interface RatesInformation {
   /** An array of shipment rates */
   rates: Array<Rate>;
   /**

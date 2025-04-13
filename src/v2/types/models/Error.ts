@@ -75,7 +75,7 @@ export interface ErrorResponse {
    *
    * @example "aa3d8e8e-462b-4476-9618-72db7f7b7009"
    */
-  requestId: string;
+  request_id: string;
   /** The errors associated with the failed API call */
   errors: Array<ShipStationAPIError>;
 }
