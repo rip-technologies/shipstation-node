@@ -9,6 +9,7 @@ import type {
   Shipment,
   Weight
 } from '../models';
+import type { PurchaseLabelOptions } from './labels';
 
 interface GetRatesBaseRequest {
   /** A rate request body */
@@ -176,12 +177,7 @@ export type OrderSourceName =
   | 'woo_commerce'
   | 'volusion';
 
-interface AddressValidatingShipment extends Shipment {
-  /**
-   * @default "no_validation"
-   */
-  validate_address?: 'no_validation' | 'validate_only' | 'validate_and_clean';
-}
+type AddressValidatingShipment = Shipment & PurchaseLabelOptions['validate_address'];
 
 interface GetRatesByShipmentOptions extends GetRatesBaseRequest {
   /**
