@@ -29,7 +29,7 @@ export class Shipments extends BaseResource {
    *
    * @returns A list of shipments
    */
-  public async list(options?: ListShipmentsOptions): Promise<ListShipmentsResponse> {
+  public async list(options: ListShipmentsOptions): Promise<ListShipmentsResponse> {
     return this.shipstation.request<ListShipmentsResponse>({
       url: this.baseUrl,
       method: 'GET',

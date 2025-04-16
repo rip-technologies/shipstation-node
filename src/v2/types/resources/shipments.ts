@@ -14,7 +14,7 @@ export interface ListShipmentsOptions extends PaginatedRequest {
    *
    * @example "pik_3YcKU5zdtJuCqoeNwyqqbW"
    */
-  pickup_id?: string;
+  pickup_id: string;
   /**
    * Used to create a filter for when a resource was created (ex. A shipment that was created after a certain time)
    *
