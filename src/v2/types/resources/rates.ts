@@ -19,7 +19,7 @@ interface GetRatesBaseRequest {
      *
      * @example ["se-28529731"]
      */
-    carrier_ids: string;
+    carrier_ids: Array<string>;
     package_types?: Array<string>;
     service_codes?: Array<string>;
     /**
@@ -50,6 +50,7 @@ interface GetRatesByShipmentIdOptions extends GetRatesBaseRequest {
    * @example "se-28529731"
    */
   shipment_id: string;
+  shipment?: never;
 }
 
 interface InvoiceAdditionalDetails {
@@ -177,14 +178,15 @@ export type OrderSourceName =
   | 'woo_commerce'
   | 'volusion';
 
-type AddressValidatingShipment = Shipment & PurchaseLabelOptions['validate_address'];
+type AddressValidatingShipment = Shipment & Pick<PurchaseLabelOptions, 'validate_address'>;
 
 interface GetRatesByShipmentOptions extends GetRatesBaseRequest {
   /**
    * The information necessary to ship a package, such as the origin, the destination, the carrier service, and the
    * package dimensions and weight.
    */
-  shipment: AddressValidatingShipment;
+  shipment: Partial<AddressValidatingShipment> & Required<Pick<AddressValidatingShipment, 'ship_to'>>;
+  shipment_id?: never;
 }
 
 export type GetRatesOptions = GetRatesByShipmentIdOptions | GetRatesByShipmentOptions;

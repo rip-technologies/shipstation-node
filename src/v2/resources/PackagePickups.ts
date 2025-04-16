@@ -44,7 +44,7 @@ export class PackagePickups extends BaseResource {
    *
    * @returns List of package pickups
    */
-  public async listScheduled(options: ListPackagePickupsOptions): Promise<ListPackagePickupsResponse> {
+  public async listScheduled(options?: ListPackagePickupsOptions): Promise<ListPackagePickupsResponse> {
     return this.shipstation.request<ListPackagePickupsResponse>({
       url: this.baseUrl,
       method: 'GET',

@@ -26,18 +26,13 @@ export interface Weight {
 }
 
 export interface ShippingAddress
-  extends Pick<
-      Address,
-      | 'name'
-      | 'phone'
-      | 'address_line1'
-      | 'city_locality'
-      | 'state_province'
-      | 'postal_code'
-      | 'country_code'
-      | 'address_residential_indicator'
-    >,
-    Partial<Pick<Address, 'email' | 'company_name' | 'address_line2' | 'address_line3'>> {
+  extends Pick<Address, 'name' | 'address_line1' | 'city_locality' | 'state_province' | 'postal_code' | 'country_code'>,
+    Partial<
+      Pick<
+        Address,
+        'email' | 'phone' | 'company_name' | 'address_line2' | 'address_line3' | 'address_residential_indicator'
+      >
+    > {
   /**
    * Additional text about how to handle the shipment at this address.
    *
@@ -403,7 +398,7 @@ export interface Shipment {
    * **Note: Some carriers only allow one package per shipment. If you attempt to create a multi-package shipment for a
    * carrier that doesn't allow it, an error will be returned.**
    */
-  packages: Array<Package>;
+  packages: Array<Partial<Package>>;
   /** The weight of a package */
   total_weight: Weight;
   /**
