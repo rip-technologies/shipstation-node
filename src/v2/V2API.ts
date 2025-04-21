@@ -26,6 +26,8 @@ const RATE_LIMIT_OPTS: RateLimiterOpts = {
 };
 
 export class V2API extends BaseAPI {
+  public isMock: boolean;
+
   public batches: Batches;
   public carriers: Carriers;
   public downloads: Downloads;
@@ -45,18 +47,18 @@ export class V2API extends BaseAPI {
 
   constructor(options: ShipStationOptions) {
     const credentials = options.credentials.v2;
-    const baseUrl = credentials?.mock
-      ? 'https://docs.shipstation.com/_mock/openapi/v2'
-      : 'https://api.shipstation.com/v2';
+    const isMock = credentials?.mock ?? false;
+
+    const baseUrl = isMock ? 'https://docs.shipstation.com/_mock/openapi/v2' : 'https://api.shipstation.com/v2';
 
     super('v2', baseUrl, RATE_LIMIT_OPTS, options);
 
-    if (credentials?.apiKey || credentials?.mock) {
-      this.authHeaders = {
-        'API-Key': credentials.mock ? 'mock' : credentials.apiKey
-      };
+    const apiKey = isMock ? 'mock' : credentials?.apiKey;
+    if (apiKey) {
+      this.authHeaders = { 'API-Key': apiKey };
     }
 
+    this.isMock = isMock;
     this.batches = new Batches(this);
     this.carriers = new Carriers(this);
     this.downloads = new Downloads(this);
