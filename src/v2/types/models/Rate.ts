@@ -14,6 +14,15 @@ export interface MonetaryValue {
   amount: number;
 }
 
+interface RateDetail {
+  rate_detail_type: string;
+  carrier_description: string;
+  carrier_billing_code: string;
+  carrier_memo: string | null;
+  amount: MonetaryValue;
+  billing_source: string;
+}
+
 export interface Rate {
   /**
    * A string that uniquely identifies a ShipStation resource, such as a carrier, label, shipment, etc. [1-25]
@@ -40,6 +49,8 @@ export interface Rate {
   other_amount: MonetaryValue;
   /** A monetary value, such as the price of a shipping label, the insured value of a package, or an account balance. */
   requested_comparison_amount: MonetaryValue;
+  /** TODO: This field is not documented in the API docs but appears in the response */
+  rate_details: Array<RateDetail>;
   /** A monetary value, such as the price of a shipping label, the insured value of a package, or an account balance. */
   tax_amount: MonetaryValue;
   /**
