@@ -306,7 +306,7 @@ export interface Shipment {
    *
    * @default []
    */
-  items: Array<ShipmentItem>;
+  items: Array<Partial<ShipmentItem>>;
   tax_identifiers?: Array<TaxIdentifier>;
   /**
    * A unique user-defined key to identify a shipment. This can be used to retrieve the shipment. (<= 50 characters)
