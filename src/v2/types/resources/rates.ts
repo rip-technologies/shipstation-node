@@ -20,6 +20,7 @@ interface GetRatesBaseRequest {
      * @example ["se-28529731"]
      */
     carrier_ids: Array<string>;
+    rate_type?: 'shipment';
     package_types?: Array<string>;
     service_codes?: Array<string>;
     /**
