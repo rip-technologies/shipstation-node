@@ -36,7 +36,7 @@ export interface CustomsItem {
    * @default null
    * @example "3926.10"
    */
-  harmonized_tarriff_code: string | null;
+  harmonized_tariff_code: string | null;
   /**
    * A two-letter [ISO 3166-1 country code](https://en.wikipedia.org/wiki/ISO_3166-1) (2 characters)
    *
