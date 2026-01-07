@@ -11,6 +11,10 @@ on:
     tags:
       - '*'
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   publish:
     name: Publish
@@ -22,6 +26,12 @@ jobs:
 
       - name: Install Dependencies
         uses: ./.github/actions/install-dependencies
+
+      - name: Upgrade npm for trusted publishing
+        run: npm install -g npm@latest
+
+      - name: Setup npm registry
+        run: npm config set registry https://registry.npmjs.org/
 
       - run: pnpm run lint
 
