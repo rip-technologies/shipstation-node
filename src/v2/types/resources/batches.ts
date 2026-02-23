@@ -2,8 +2,7 @@ import type { Batch, BatchStatus, Label } from '../models';
 import type { PaginatedRequest, PaginatedResponse } from './pagination';
 
 interface BatchProcessLabelsOptions
-  extends Pick<Batch, 'label_layout' | 'label_format'>,
-    Partial<Pick<Label, 'display_scheme'>> {
+  extends Pick<Batch, 'label_layout' | 'label_format'>, Partial<Pick<Label, 'display_scheme'>> {
   /**
    * When 'true', the batch will be enqueued for processing
    *
@@ -91,8 +90,7 @@ export interface GetBatchErrorsResponse extends Pick<PaginatedResponse, 'links'>
 }
 
 export interface ProcessBatchLabelsOptions
-  extends Partial<Pick<Batch, 'label_layout' | 'label_format'>>,
-    Pick<BatchProcessLabelsOptions, 'display_scheme'> {
+  extends Partial<Pick<Batch, 'label_layout' | 'label_format'>>, Pick<BatchProcessLabelsOptions, 'display_scheme'> {
   /**
    * An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string that represents a date and time.
    *

@@ -101,11 +101,10 @@ export interface VoidLabelResponse {
     | 'contact_carrier';
 }
 
-export interface PurchaseLabelOptions
-  extends Pick<
-    Label,
-    'is_return_label' | 'rma_number' | 'charge_event' | 'label_format' | 'display_scheme' | 'label_layout'
-  > {
+export interface PurchaseLabelOptions extends Pick<
+  Label,
+  'is_return_label' | 'rma_number' | 'charge_event' | 'label_format' | 'display_scheme' | 'label_layout'
+> {
   /**
    * A unique identifier for a carrier service point where the shipment will be delivered by the carrier. This will take
    * precedence over a shipment's ship to address.

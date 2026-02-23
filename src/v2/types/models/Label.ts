@@ -83,8 +83,10 @@ export interface LabelPackage extends Omit<Package, 'package_name' | 'products'>
   alternative_identifiers: Array<AlternativeIdentifier>;
 }
 
-export interface Label
-  extends Pick<LabelPackage, 'label_download' | 'form_download' | 'paperless_download' | 'alternative_identifiers'> {
+export interface Label extends Pick<
+  LabelPackage,
+  'label_download' | 'form_download' | 'paperless_download' | 'alternative_identifiers'
+> {
   /**
    * A string that uniquely identifies a ShipStation resource, such as a carrier, label, shipment, etc. [1-25]
    * characters `^se(-[a-z0-9]+)+$`

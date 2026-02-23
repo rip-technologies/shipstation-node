@@ -155,16 +155,15 @@ export type TrackingStatusCode =
   /** Status not mapped. Please check the carrier's website for updates. */
   | 'CARRIER_STATUS_NOT_MAPPED';
 
-export interface LabelTrackingInfo
-  extends Pick<
-    TrackEvent,
-    | 'status_code'
-    | 'status_detail_code'
-    | 'status_description'
-    | 'status_detail_description'
-    | 'carrier_status_code'
-    | 'carrier_detail_code'
-  > {
+export interface LabelTrackingInfo extends Pick<
+  TrackEvent,
+  | 'status_code'
+  | 'status_detail_code'
+  | 'status_description'
+  | 'status_detail_description'
+  | 'carrier_status_code'
+  | 'carrier_detail_code'
+> {
   /**
    * A tracking number for a package. The format depends on the carrier.
    *

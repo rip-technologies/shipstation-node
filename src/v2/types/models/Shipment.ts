@@ -26,7 +26,8 @@ export interface Weight {
 }
 
 export interface ShippingAddress
-  extends Pick<Address, 'name' | 'address_line1' | 'city_locality' | 'state_province' | 'postal_code' | 'country_code'>,
+  extends
+    Pick<Address, 'name' | 'address_line1' | 'city_locality' | 'state_province' | 'postal_code' | 'country_code'>,
     Partial<
       Pick<
         Address,

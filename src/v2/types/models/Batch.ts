@@ -12,8 +12,10 @@ export type BatchStatus =
   | 'notifying'
   | 'invalid';
 
-export interface Batch
-  extends Pick<Label, 'label_layout' | 'label_format' | 'label_download' | 'form_download' | 'paperless_download'> {
+export interface Batch extends Pick<
+  Label,
+  'label_layout' | 'label_format' | 'label_download' | 'form_download' | 'paperless_download'
+> {
   /**
    * A string that uniquely identifies a ShipStation resource, such as a batch, label, shipment, etc.
    * `^se(-[a-z0-9]+)+$`

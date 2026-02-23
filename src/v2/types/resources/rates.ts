@@ -84,7 +84,8 @@ interface InvoiceAdditionalDetails {
 }
 
 export interface ImporterOfRecord
-  extends Pick<Address, 'address_line1' | 'city_locality' | 'postal_code' | 'country_code'>,
+  extends
+    Pick<Address, 'address_line1' | 'city_locality' | 'postal_code' | 'country_code'>,
     Partial<Pick<Address, 'phone' | 'email' | 'address_line2' | 'address_line3' | 'state_province'>> {
   /**
    * The name of a contact person at this address. Either `name` or the `company_name` field should always be set.
