@@ -2,7 +2,7 @@ import type { ShipStationOptions, ShipStationRequestOptions } from './BaseAPI';
 import { V1API } from './v1/V1API';
 import { V2API } from './v2/V2API';
 
-export default class ShipStation {
+export class ShipStation {
   public v1: V1API;
   public v2: V2API;
 
