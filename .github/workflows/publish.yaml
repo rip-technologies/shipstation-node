@@ -33,7 +33,7 @@ jobs:
       - name: Setup npm registry
         run: npm config set registry https://registry.npmjs.org/
 
-      - run: bun run lint
+      - run: bun run check
 
       - run: bun run build
 

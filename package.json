@@ -37,5 +37,5 @@
 		"check": "biome ${CI:+ci} ${CI:-check} . --error-on-warnings"
 	},
 	"types": "dist/index.d.ts",
-	"version": "2.1.0"
+	"version": "2.2.0"
 }

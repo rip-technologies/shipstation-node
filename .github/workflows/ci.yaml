@@ -16,7 +16,7 @@ on:
 
 jobs:
   build:
-    name: Build, Lint, and Test
+    name: Build, Check, and Test
     runs-on: ubuntu-latest
 
     steps:
@@ -26,8 +26,8 @@ jobs:
       - name: Install Dependencies
         uses: ./.github/actions/install-dependencies
 
-      - name: Run Lint
-        run: bun run lint
+      - name: Run Check
+        run: bun run check
 
       - name: Run Build
         run: bun run build --noEmit
