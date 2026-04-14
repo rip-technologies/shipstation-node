@@ -12,6 +12,5 @@ export class ShipStation {
 	}
 }
 
-export type { ShipStationRequestOptions };
-
 export * from "./v2/types";
+export type { ShipStationRequestOptions };
