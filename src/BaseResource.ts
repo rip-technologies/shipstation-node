@@ -1,11 +1,11 @@
-import type BaseAPI from './BaseAPI';
+import type BaseAPI from "./BaseAPI";
 
 export abstract class BaseResource {
-  protected baseUrl: string;
-  protected shipstation: BaseAPI;
+	protected baseUrl: string;
+	protected shipstation: BaseAPI;
 
-  constructor(shipstation: BaseAPI, baseUrl: string) {
-    this.baseUrl = baseUrl;
-    this.shipstation = shipstation;
-  }
+	constructor(shipstation: BaseAPI, baseUrl: string) {
+		this.baseUrl = baseUrl;
+		this.shipstation = shipstation;
+	}
 }

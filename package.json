@@ -10,17 +10,9 @@
   },
   "description": "Unofficial Node.js wrapper for the ShipStation API",
   "devDependencies": {
-    "@types/node": "20.17.10",
-    "@typescript-eslint/eslint-plugin": "8.56.0",
-    "@typescript-eslint/parser": "8.56.0",
-    "eslint": "10.0.1",
-    "eslint-config-prettier": "10.1.8",
-    "eslint-plugin-prettier": "5.5.5",
-    "eslint-plugin-simple-import-sort": "12.1.1",
-    "prettier": "3.8.1",
-    "ts-node": "10.9.2",
-    "typescript": "5.9.3",
-    "typescript-eslint": "8.56.0"
+    "@types/node": "24.10.4",
+    "@biomejs/biome": "2.4.11",
+    "typescript": "5.9.3"
   },
   "files": [
     "dist",
@@ -41,8 +33,8 @@
   },
   "scripts": {
     "build": "tsc",
-    "format": "bun run lint --fix",
-    "lint": "eslint --max-warnings 0 --config=eslint.config.js"
+    "format": "biome check --write .",
+    "lint": "biome check ."
   },
   "types": "dist/index.d.ts",
   "version": "2.1.0"
