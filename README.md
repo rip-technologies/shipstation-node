@@ -142,7 +142,7 @@ Contributions are welcome! Please follow these steps:
 1. Fork the repository
 2. Create a new branch (`git checkout -b feature-name`)
 3. Commit your changes (`git commit -m 'Add feature'`)
-4. Test your changes (`pnpm run build` and `pnpm run lint`)
+4. Test your changes (`bun run build` and `bun run lint`)
 5. Push to the branch (`git push origin feature-name`)
 6. Open a pull request with a thorough description
 
