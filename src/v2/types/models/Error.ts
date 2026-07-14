@@ -1,7 +1,8 @@
 export type ShipStationAPIErrorSource =
 	| "carrier"
 	| "order_source"
-	| "ShipStation";
+	| "ShipStation"
+	| "shipengine";
 export type ShipStationAPIErrorType =
 	| "account_status"
 	| "business_rules"
@@ -70,6 +71,10 @@ export interface ShipStationAPIError {
 	 * @example "Body of request cannot be null"
 	 */
 	message: string;
+	/** The name of the field that caused the error (only present for validation errors) */
+	field_name?: string;
+	/** The invalid value that was provided for the field (only present for validation errors) */
+	field_value?: string;
 }
 
 export interface ErrorResponse {
@@ -81,4 +86,14 @@ export interface ErrorResponse {
 	request_id: string;
 	/** The errors associated with the failed API call */
 	errors: Array<ShipStationAPIError>;
+}
+
+export class ShipStationError extends Error {
+	override readonly name = "ShipStationError";
+	readonly data: ErrorResponse;
+
+	constructor(data: ErrorResponse) {
+		super(data.errors[0].message);
+		this.data = data;
+	}
 }
