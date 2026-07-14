@@ -10,7 +10,7 @@
 	},
 	"description": "Unofficial Node.js wrapper for the ShipStation API",
 	"devDependencies": {
-		"@types/node": "24.10.4",
+		"@types/node": "24.13.3",
 		"@biomejs/biome": "2.4.11",
 		"typescript": "5.9.3"
 	},
@@ -37,5 +37,5 @@
 		"check": "biome ${CI:+ci} ${CI:-check} . --error-on-warnings"
 	},
 	"types": "dist/index.d.ts",
-	"version": "2.2.1"
+	"version": "2.2.2"
 }
