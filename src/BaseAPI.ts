@@ -1,9 +1,11 @@
-import type { AxiosRequestConfig } from "axios";
+import type { AxiosError, AxiosRequestConfig } from "axios";
 import axios from "axios";
 import type { IAxiosRetryConfig } from "axios-retry";
 import axiosRetry from "axios-retry";
 import type { RateLimiterOpts } from "limiter";
 import { RateLimiter } from "limiter";
+
+import { type ErrorResponse, ShipStationError } from "./v2/types/models/Error";
 
 export interface ShipStationRequestOptions
 	extends Pick<AxiosRequestConfig, "data" | "params" | "url"> {
@@ -67,13 +69,22 @@ export default abstract class BaseAPI {
 		// Wait for rate limit token
 		await this.limiter.removeTokens(1);
 
-		const response = await axios.request<T>({
-			baseURL: this.baseURL,
-			headers: this.authHeaders,
-			...this.requestConfig,
-			...requestData,
-		});
+		try {
+			const response = await axios.request<T>({
+				baseURL: this.baseURL,
+				headers: this.authHeaders,
+				...this.requestConfig,
+				...requestData,
+			});
 
-		return response.data;
+			return response.data;
+		} catch (error) {
+			const response = (error as AxiosError<ErrorResponse>).response;
+			if (!response) {
+				throw error;
+			}
+
+			throw new ShipStationError(response.data);
+		}
 	};
 }
