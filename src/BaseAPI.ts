@@ -36,6 +36,14 @@ export interface RateLimitOptions {
 	interval: number;
 }
 
+// Gateway failures and v1 errors don't carry the v2 error body
+const isErrorResponse = (data: unknown): data is ErrorResponse =>
+	typeof data === "object" &&
+	data !== null &&
+	"errors" in data &&
+	Array.isArray(data.errors) &&
+	data.errors.length > 0;
+
 export default abstract class BaseAPI {
 	private readonly type: "v1" | "v2";
 	private readonly baseURL: string;
@@ -79,12 +87,13 @@ export default abstract class BaseAPI {
 
 			return response.data;
 		} catch (error) {
-			const response = (error as AxiosError<ErrorResponse>).response;
-			if (!response) {
+			// Keep the axios error for anything else so its status survives
+			const data = (error as AxiosError).response?.data;
+			if (!isErrorResponse(data)) {
 				throw error;
 			}
 
-			throw new ShipStationError(response.data);
+			throw new ShipStationError(data);
 		}
 	};
 }
