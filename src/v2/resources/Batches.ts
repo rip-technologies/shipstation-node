@@ -1,4 +1,5 @@
 import type BaseAPI from "../../BaseAPI";
+import type { ShipStationCallOptions } from "../../BaseAPI";
 import { BaseResource } from "../../BaseResource";
 import type {
 	Batch,
@@ -29,14 +30,22 @@ export class Batches extends BaseResource {
 	 *
 	 * @param options Options for the list request
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns A list of batches
 	 */
-	public async list(options: ListBatchesOptions): Promise<ListBatchesResponse> {
-		return this.shipstation.request<ListBatchesResponse>({
-			url: this.baseUrl,
-			method: "GET",
-			params: options,
-		});
+	public async list(
+		options: ListBatchesOptions,
+		callOptions?: ShipStationCallOptions,
+	): Promise<ListBatchesResponse> {
+		return this.shipstation.request<ListBatchesResponse>(
+			{
+				url: this.baseUrl,
+				method: "GET",
+				params: options,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -46,14 +55,22 @@ export class Batches extends BaseResource {
 	 *
 	 * @param options Options for the create request
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The newly created batch
 	 */
-	public async create(options: CreateBatchOptions): Promise<Batch> {
-		return this.shipstation.request<Batch>({
-			url: this.baseUrl,
-			method: "POST",
-			data: options,
-		});
+	public async create(
+		options: CreateBatchOptions,
+		callOptions?: ShipStationCallOptions,
+	): Promise<Batch> {
+		return this.shipstation.request<Batch>(
+			{
+				url: this.baseUrl,
+				method: "POST",
+				data: options,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -64,13 +81,21 @@ export class Batches extends BaseResource {
 	 * @param batchId The batch ID of the batch to retrieve [1-25] characters `^se(-[a-z0-9]+)+$`
 	 * @example "se-28529731"
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns A batch specified by its batch ID
 	 */
-	public async getById(batchId: string): Promise<Batch> {
-		return this.shipstation.request<Batch>({
-			url: `${this.baseUrl}/${batchId}`,
-			method: "GET",
-		});
+	public async getById(
+		batchId: string,
+		callOptions?: ShipStationCallOptions,
+	): Promise<Batch> {
+		return this.shipstation.request<Batch>(
+			{
+				url: `${this.baseUrl}/${batchId}`,
+				method: "GET",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -80,13 +105,21 @@ export class Batches extends BaseResource {
 	 *
 	 * @param externalBatchId The external batch ID of the batch to retrieve
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns A batch specified by its external batch ID
 	 */
-	public async getByExternalId(externalBatchId: string): Promise<Batch> {
-		return this.shipstation.request<Batch>({
-			url: `${this.baseUrl}/external_batch_id/${externalBatchId}`,
-			method: "GET",
-		});
+	public async getByExternalId(
+		externalBatchId: string,
+		callOptions?: ShipStationCallOptions,
+	): Promise<Batch> {
+		return this.shipstation.request<Batch>(
+			{
+				url: `${this.baseUrl}/external_batch_id/${externalBatchId}`,
+				method: "GET",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -96,12 +129,20 @@ export class Batches extends BaseResource {
 	 *
 	 * @param batchId The batch ID of the batch to retrieve [1-25] characters `^se(-[a-z0-9]+)+$`
 	 * @example "se-28529731"
+	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
 	 */
-	public async delete(batchId: string): Promise<void> {
-		await this.shipstation.request({
-			url: `${this.baseUrl}/${batchId}`,
-			method: "DELETE",
-		});
+	public async delete(
+		batchId: string,
+		callOptions?: ShipStationCallOptions,
+	): Promise<void> {
+		await this.shipstation.request(
+			{
+				url: `${this.baseUrl}/${batchId}`,
+				method: "DELETE",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -111,12 +152,20 @@ export class Batches extends BaseResource {
 	 *
 	 * @param batchId The batch ID of the batch to retrieve [1-25] characters `^se(-[a-z0-9]+)+$`
 	 * @example "se-28529731"
+	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
 	 */
-	public async updateToArchived(batchId: string): Promise<void> {
-		await this.shipstation.request({
-			url: `${this.baseUrl}/${batchId}`,
-			method: "PUT",
-		});
+	public async updateToArchived(
+		batchId: string,
+		callOptions?: ShipStationCallOptions,
+	): Promise<void> {
+		await this.shipstation.request(
+			{
+				url: `${this.baseUrl}/${batchId}`,
+				method: "PUT",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -128,16 +177,22 @@ export class Batches extends BaseResource {
 	 * @example "se-28529731"
 	 *
 	 * @param data The data to add to the batch
+	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
 	 */
 	public async addToBatch(
 		batchId: string,
 		data: CreateBatchOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<void> {
-		await this.shipstation.request({
-			url: `${this.baseUrl}/${batchId}/add`,
-			method: "POST",
-			data,
-		});
+		await this.shipstation.request(
+			{
+				url: `${this.baseUrl}/${batchId}/add`,
+				method: "POST",
+				data,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -151,17 +206,23 @@ export class Batches extends BaseResource {
 	 *
 	 * @param options Options for the list request
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns A list of batch errors
 	 */
 	public async getErrors(
 		batchId: string,
 		options?: GetBatchErrorsOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<GetBatchErrorsResponse> {
-		return this.shipstation.request<GetBatchErrorsResponse>({
-			url: `${this.baseUrl}/${batchId}/errors`,
-			method: "GET",
-			params: options,
-		});
+		return this.shipstation.request<GetBatchErrorsResponse>(
+			{
+				url: `${this.baseUrl}/${batchId}/errors`,
+				method: "GET",
+				params: options,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -173,16 +234,22 @@ export class Batches extends BaseResource {
 	 * @example "se-28529731"
 	 *
 	 * @param options Options for the process request
+	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
 	 */
 	public async processLabels(
 		batchId: string,
 		options: ProcessBatchLabelsOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<void> {
-		await this.shipstation.request({
-			url: `${this.baseUrl}/${batchId}/process/labels`,
-			method: "POST",
-			data: options,
-		});
+		await this.shipstation.request(
+			{
+				url: `${this.baseUrl}/${batchId}/process/labels`,
+				method: "POST",
+				data: options,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -194,15 +261,21 @@ export class Batches extends BaseResource {
 	 * @example "se-28529731"
 	 *
 	 * @param data The data to remove from the batch
+	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
 	 */
 	public async removeFromBatch(
 		batchId: string,
 		data: RemoveFromBatchOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<void> {
-		await this.shipstation.request({
-			url: `${this.baseUrl}/${batchId}/remove`,
-			method: "POST",
-			data,
-		});
+		await this.shipstation.request(
+			{
+				url: `${this.baseUrl}/${batchId}/remove`,
+				method: "POST",
+				data,
+			},
+			callOptions,
+		);
 	}
 }

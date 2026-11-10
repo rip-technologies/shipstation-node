@@ -1,4 +1,5 @@
 import type ShipStation from "../../BaseAPI";
+import type { ShipStationCallOptions } from "../../BaseAPI";
 import { BaseResource } from "../../BaseResource";
 import type {
 	GetProductResponse,
@@ -23,13 +24,21 @@ export class Products extends BaseResource {
 	 *
 	 * @param productId The system-generated identifier for the Product.
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The product.
 	 */
-	public async get(productId: number): Promise<GetProductResponse> {
-		return this.shipstation.request<GetProductResponse>({
-			url: `${this.baseUrl}/${productId}`,
-			method: "GET",
-		});
+	public async get(
+		productId: number,
+		callOptions?: ShipStationCallOptions,
+	): Promise<GetProductResponse> {
+		return this.shipstation.request<GetProductResponse>(
+			{
+				url: `${this.baseUrl}/${productId}`,
+				method: "GET",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -39,16 +48,22 @@ export class Products extends BaseResource {
 	 *
 	 * @param params The parameters for the request.
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The list of products.
 	 */
 	public async list(
 		params?: ListProductsOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<ListProductsResponse> {
-		return this.shipstation.request<ListProductsResponse>({
-			url: this.baseUrl,
-			method: "GET",
-			params,
-		});
+		return this.shipstation.request<ListProductsResponse>(
+			{
+				url: this.baseUrl,
+				method: "GET",
+				params,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -64,13 +79,21 @@ export class Products extends BaseResource {
 	 *
 	 * @param data The product data.
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The status of the update operation.
 	 */
-	public async update(data: Product): Promise<UpdateProductResponse> {
-		return this.shipstation.request<UpdateProductResponse>({
-			url: `${this.baseUrl}/${data.productId}`,
-			method: "PUT",
-			data,
-		});
+	public async update(
+		data: Product,
+		callOptions?: ShipStationCallOptions,
+	): Promise<UpdateProductResponse> {
+		return this.shipstation.request<UpdateProductResponse>(
+			{
+				url: `${this.baseUrl}/${data.productId}`,
+				method: "PUT",
+				data,
+			},
+			callOptions,
+		);
 	}
 }

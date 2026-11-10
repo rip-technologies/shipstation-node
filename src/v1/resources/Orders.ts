@@ -1,4 +1,5 @@
 import type ShipStation from "../../BaseAPI";
+import type { ShipStationCallOptions } from "../../BaseAPI";
 import { BaseResource } from "../../BaseResource";
 import type {
 	CreateLabelResponse,
@@ -34,13 +35,21 @@ export class Orders extends BaseResource {
 	 *
 	 * @param orderId The ID of the order to retrieve.
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The order details.
 	 */
-	public async get(orderId: number): Promise<OrderResponseItem> {
-		return this.shipstation.request<OrderResponseItem>({
-			url: `${this.baseUrl}/${orderId}`,
-			method: "GET",
-		});
+	public async get(
+		orderId: number,
+		callOptions?: ShipStationCallOptions,
+	): Promise<OrderResponseItem> {
+		return this.shipstation.request<OrderResponseItem>(
+			{
+				url: `${this.baseUrl}/${orderId}`,
+				method: "GET",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -50,14 +59,22 @@ export class Orders extends BaseResource {
 	 *
 	 * @param params The parameters for the request.
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns A list of orders.
 	 */
-	public async list(params?: ListOrdersOptions): Promise<ListOrdersResponse> {
-		return this.shipstation.request<ListOrdersResponse>({
-			url: this.baseUrl,
-			method: "GET",
-			params,
-		});
+	public async list(
+		params?: ListOrdersOptions,
+		callOptions?: ShipStationCallOptions,
+	): Promise<ListOrdersResponse> {
+		return this.shipstation.request<ListOrdersResponse>(
+			{
+				url: this.baseUrl,
+				method: "GET",
+				params,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -67,16 +84,22 @@ export class Orders extends BaseResource {
 	 *
 	 * @param params The parameters for the request.
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns A list of orders by tag.
 	 */
 	public async listByTag(
 		params: ListOrdersByTagOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<ListOrdersResponse> {
-		return this.shipstation.request<ListOrdersResponse>({
-			url: `${this.baseUrl}/listbytag`,
-			method: "GET",
-			params,
-		});
+		return this.shipstation.request<ListOrdersResponse>(
+			{
+				url: `${this.baseUrl}/listbytag`,
+				method: "GET",
+				params,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -99,16 +122,22 @@ export class Orders extends BaseResource {
 	 *
 	 * @param data The data for the request.
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The created or updated order.
 	 */
 	public async createOrUpdate(
 		data: CreateOrUpdateOrderOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<Order> {
-		return this.shipstation.request<Order>({
-			url: `${this.baseUrl}/createorder`,
-			method: "POST",
-			data,
-		});
+		return this.shipstation.request<Order>(
+			{
+				url: `${this.baseUrl}/createorder`,
+				method: "POST",
+				data,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -132,16 +161,22 @@ export class Orders extends BaseResource {
 	 * @param orders An array of [Order](https://www.shipstation.com/docs/api/models/order/) objects (maximum of 100 per
 	 * request).
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The created or updated orders.
 	 */
 	public async createOrUpdateMultiple(
 		orders: Array<CreateOrUpdateOrderOptions>,
+		callOptions?: ShipStationCallOptions,
 	): Promise<CreateOrUpdateMultipleOrdersResponse> {
-		return this.shipstation.request<CreateOrUpdateMultipleOrdersResponse>({
-			url: `${this.baseUrl}/createorders`,
-			method: "POST",
-			data: orders,
-		});
+		return this.shipstation.request<CreateOrUpdateMultipleOrdersResponse>(
+			{
+				url: `${this.baseUrl}/createorders`,
+				method: "POST",
+				data: orders,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -152,16 +187,22 @@ export class Orders extends BaseResource {
 	 *
 	 * @param data The data for the request.
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The created label.
 	 */
 	public async createLabel(
 		data: CreateOrderLabelOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<CreateLabelResponse> {
-		return this.shipstation.request<CreateLabelResponse>({
-			url: `${this.baseUrl}/createlabelfororder`,
-			method: "POST",
-			data,
-		});
+		return this.shipstation.request<CreateLabelResponse>(
+			{
+				url: `${this.baseUrl}/createlabelfororder`,
+				method: "POST",
+				data,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -183,17 +224,23 @@ export class Orders extends BaseResource {
 	 * @param orderId Identifies the order that will be tagged.
 	 * @param tagId Identifies the tag that will be applied to the order.
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The success status of the operation.
 	 */
 	public async addTag(
 		orderId: number,
 		tagId: number,
+		callOptions?: ShipStationCallOptions,
 	): Promise<OrderOperationResponse> {
-		return this.shipstation.request<OrderOperationResponse>({
-			url: `${this.baseUrl}/addtag`,
-			method: "POST",
-			data: { orderId, tagId },
-		});
+		return this.shipstation.request<OrderOperationResponse>(
+			{
+				url: `${this.baseUrl}/addtag`,
+				method: "POST",
+				data: { orderId, tagId },
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -215,17 +262,23 @@ export class Orders extends BaseResource {
 	 * @param orderId Identifies the order whose tag will be removed.
 	 * @param tagId Identifies the tag to remove.
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The success status of the operation.
 	 */
 	public async removeTag(
 		orderId: number,
 		tagId: number,
+		callOptions?: ShipStationCallOptions,
 	): Promise<OrderOperationResponse> {
-		return this.shipstation.request<OrderOperationResponse>({
-			url: `${this.baseUrl}/removetag`,
-			method: "POST",
-			data: { orderId, tagId },
-		});
+		return this.shipstation.request<OrderOperationResponse>(
+			{
+				url: `${this.baseUrl}/removetag`,
+				method: "POST",
+				data: { orderId, tagId },
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -235,16 +288,22 @@ export class Orders extends BaseResource {
 	 *
 	 * @param data The data for the request.
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The details of the order that was marked as shipped.
 	 */
 	public async markShipped(
 		data: MarkShippedOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<MarkShippedResponse> {
-		return this.shipstation.request<MarkShippedResponse>({
-			url: `${this.baseUrl}/markshipped`,
-			method: "POST",
-			data,
-		});
+		return this.shipstation.request<MarkShippedResponse>(
+			{
+				url: `${this.baseUrl}/markshipped`,
+				method: "POST",
+				data,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -255,13 +314,21 @@ export class Orders extends BaseResource {
 	 *
 	 * @param orderId The ID of the order to delete.
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The success status of the operation.
 	 */
-	public async delete(orderId: number): Promise<OrderOperationResponse> {
-		return this.shipstation.request<OrderOperationResponse>({
-			url: `${this.baseUrl}/${orderId}`,
-			method: "DELETE",
-		});
+	public async delete(
+		orderId: number,
+		callOptions?: ShipStationCallOptions,
+	): Promise<OrderOperationResponse> {
+		return this.shipstation.request<OrderOperationResponse>(
+			{
+				url: `${this.baseUrl}/${orderId}`,
+				method: "DELETE",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -282,17 +349,23 @@ export class Orders extends BaseResource {
 	 * @param userId Identifies the user that will be applied to the orders. It should contain a GUID of the user to be
 	 * assigned to the array of orders.
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The success status of the operation.
 	 */
 	public async assignUser(
 		orderIds: Array<number>,
 		userId: string,
+		callOptions?: ShipStationCallOptions,
 	): Promise<OrderOperationResponse> {
-		return this.shipstation.request<OrderOperationResponse>({
-			url: `${this.baseUrl}/assignuser`,
-			method: "POST",
-			data: { orderIds, userId },
-		});
+		return this.shipstation.request<OrderOperationResponse>(
+			{
+				url: `${this.baseUrl}/assignuser`,
+				method: "POST",
+				data: { orderIds, userId },
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -312,16 +385,22 @@ export class Orders extends BaseResource {
 	 *
 	 * **NOTE:** If ANY of the orders within the array are not found, no orders will have their users unassigned.
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The success status of the operation.
 	 */
 	public async unassignUser(
 		orderIds: Array<number>,
+		callOptions?: ShipStationCallOptions,
 	): Promise<OrderOperationResponse> {
-		return this.shipstation.request<OrderOperationResponse>({
-			url: `${this.baseUrl}/unassignuser`,
-			method: "POST",
-			data: { orderIds },
-		});
+		return this.shipstation.request<OrderOperationResponse>(
+			{
+				url: `${this.baseUrl}/unassignuser`,
+				method: "POST",
+				data: { orderIds },
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -341,17 +420,23 @@ export class Orders extends BaseResource {
 	 * @param orderId Identifies the order that will be held.
 	 * @param holdUntilDate Date when order is moved from `on_hold` status to `awaiting_shipment`.
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The success status of the operation.
 	 */
 	public async hold(
 		orderId: number,
 		holdUntilDate: string,
+		callOptions?: ShipStationCallOptions,
 	): Promise<OrderOperationResponse> {
-		return this.shipstation.request<OrderOperationResponse>({
-			url: `${this.baseUrl}/holduntil`,
-			method: "POST",
-			data: { orderId, holdUntilDate },
-		});
+		return this.shipstation.request<OrderOperationResponse>(
+			{
+				url: `${this.baseUrl}/holduntil`,
+				method: "POST",
+				data: { orderId, holdUntilDate },
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -371,15 +456,21 @@ export class Orders extends BaseResource {
 	 *
 	 * @param orderId Identifies the order that will be restored to `awaiting_shipment` status from `on_hold`.
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The success status of the operation.
 	 */
 	public async restoreFromHold(
 		orderId: number,
+		callOptions?: ShipStationCallOptions,
 	): Promise<OrderOperationResponse> {
-		return this.shipstation.request<OrderOperationResponse>({
-			url: `${this.baseUrl}/restorefromhold`,
-			method: "POST",
-			data: { orderId },
-		});
+		return this.shipstation.request<OrderOperationResponse>(
+			{
+				url: `${this.baseUrl}/restorefromhold`,
+				method: "POST",
+				data: { orderId },
+			},
+			callOptions,
+		);
 	}
 }

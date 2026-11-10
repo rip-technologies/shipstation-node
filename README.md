@@ -133,6 +133,41 @@ const shipstation = new ShipStation({
 });
 ```
 
+### Per-call Options
+
+Every SDK method takes an optional last argument to set `timeout`, `signal` or `"axios-retry"` for that call only. All
+calls still share the client's rate limiter.
+
+```ts
+import axiosRetry from 'axios-retry';
+
+const isGatewayErrorOrTimeout = (error) =>
+  error.code === 'ECONNABORTED' || [502, 503, 504].includes(error.response?.status);
+
+// Rate quotes: give up after 15s and retry gateway errors and timeouts twice
+const rates = await shipstation.v2.rates.get(request, {
+  timeout: 15_000,
+  'axios-retry': {
+    retries: 2,
+    retryCondition: isGatewayErrorOrTimeout,
+    retryDelay: axiosRetry.exponentialDelay,
+    shouldResetTimeout: true
+  }
+});
+
+// Label purchases: never resend, whatever the client's retryConfig says
+const label = await shipstation.v2.labels.purchase(labelRequest, {
+  'axios-retry': { retries: 0 }
+});
+```
+
+Per-call `"axios-retry"` settings are merged over the client's `retryConfig`, so you only need to pass the fields you
+want to change. This works even when the client has no `retryConfig`.
+
+> [!NOTE]
+> By default axios-retry counts `timeout` across all attempts, so a request that already used up its timeout is not
+> retried. Set `shouldResetTimeout: true` to give each attempt the full timeout.
+
 ---
 
 ## Contributing

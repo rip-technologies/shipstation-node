@@ -1,4 +1,5 @@
 import type BaseAPI from "../../BaseAPI";
+import type { ShipStationCallOptions } from "../../BaseAPI";
 import { BaseResource } from "../../BaseResource";
 import type {
 	CreateWebhookData,
@@ -24,13 +25,20 @@ export class Webhooks extends BaseResource {
 	 *
 	 * List all webhooks currently enabled for the account.
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns A list of webhooks
 	 */
-	public async list(): Promise<ListWebhooksResponse> {
-		return this.shipstation.request<ListWebhooksResponse>({
-			url: this.baseUrl,
-			method: "GET",
-		});
+	public async list(
+		callOptions?: ShipStationCallOptions,
+	): Promise<ListWebhooksResponse> {
+		return this.shipstation.request<ListWebhooksResponse>(
+			{
+				url: this.baseUrl,
+				method: "GET",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -40,14 +48,22 @@ export class Webhooks extends BaseResource {
 	 *
 	 * @param data The data for the new webhook
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The newly created webhook
 	 */
-	public async create(data: CreateWebhookData): Promise<Webhook> {
-		return this.shipstation.request<Webhook>({
-			url: this.baseUrl,
-			method: "POST",
-			data,
-		});
+	public async create(
+		data: CreateWebhookData,
+		callOptions?: ShipStationCallOptions,
+	): Promise<Webhook> {
+		return this.shipstation.request<Webhook>(
+			{
+				url: this.baseUrl,
+				method: "POST",
+				data,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -58,13 +74,21 @@ export class Webhooks extends BaseResource {
 	 * @param webhookId Webhook ID [1-25] characters `^se(-[a-z0-9]+)+$`
 	 * @example "se-28529731"
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The webhook specified by the ID
 	 */
-	public async getById(webhookId: string): Promise<Webhook> {
-		return this.shipstation.request<Webhook>({
-			url: `${this.baseUrl}/${webhookId}`,
-			method: "GET",
-		});
+	public async getById(
+		webhookId: string,
+		callOptions?: ShipStationCallOptions,
+	): Promise<Webhook> {
+		return this.shipstation.request<Webhook>(
+			{
+				url: `${this.baseUrl}/${webhookId}`,
+				method: "GET",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -76,16 +100,22 @@ export class Webhooks extends BaseResource {
 	 * @example "se-28529731"
 	 *
 	 * @param data The data for updating the webhook
+	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
 	 */
 	public async update(
 		webhookId: string,
 		data: UpdateWebhookData,
+		callOptions?: ShipStationCallOptions,
 	): Promise<void> {
-		await this.shipstation.request({
-			url: `${this.baseUrl}/${webhookId}`,
-			method: "PUT",
-			data,
-		});
+		await this.shipstation.request(
+			{
+				url: `${this.baseUrl}/${webhookId}`,
+				method: "PUT",
+				data,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -94,11 +124,19 @@ export class Webhooks extends BaseResource {
 	 * Delete a webhook.
 	 *
 	 * @param webhookId Webhook ID [1-25] characters `^se(-[a-z0-9]+)+$`
+	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
 	 */
-	public async deleteById(webhookId: string): Promise<void> {
-		await this.shipstation.request({
-			url: `${this.baseUrl}/${webhookId}`,
-			method: "DELETE",
-		});
+	public async deleteById(
+		webhookId: string,
+		callOptions?: ShipStationCallOptions,
+	): Promise<void> {
+		await this.shipstation.request(
+			{
+				url: `${this.baseUrl}/${webhookId}`,
+				method: "DELETE",
+			},
+			callOptions,
+		);
 	}
 }

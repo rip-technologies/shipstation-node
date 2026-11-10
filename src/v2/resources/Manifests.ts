@@ -1,4 +1,5 @@
 import type BaseAPI from "../../BaseAPI";
+import type { ShipStationCallOptions } from "../../BaseAPI";
 import { BaseResource } from "../../BaseResource";
 import type {
 	CreateManifestData,
@@ -27,16 +28,22 @@ export class Manifests extends BaseResource {
 	 *
 	 * @param params Options for listing the manifests
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns A list of manifests
 	 */
 	public async list(
 		params?: ListManifestsOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<ListManifestsResponse> {
-		return this.shipstation.request<ListManifestsResponse>({
-			url: this.baseUrl,
-			method: "GET",
-			params,
-		});
+		return this.shipstation.request<ListManifestsResponse>(
+			{
+				url: this.baseUrl,
+				method: "GET",
+				params,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -48,13 +55,21 @@ export class Manifests extends BaseResource {
 	 *
 	 * @example "se-28529731"
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns A manifest
 	 */
-	public async getById(manifestId: string): Promise<Manifest> {
-		return this.shipstation.request<Manifest>({
-			url: `${this.baseUrl}/${manifestId}`,
-			method: "GET",
-		});
+	public async getById(
+		manifestId: string,
+		callOptions?: ShipStationCallOptions,
+	): Promise<Manifest> {
+		return this.shipstation.request<Manifest>(
+			{
+				url: `${this.baseUrl}/${manifestId}`,
+				method: "GET",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -65,15 +80,21 @@ export class Manifests extends BaseResource {
 	 *
 	 * @param params Data for creating a manifest
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns A manifest
 	 */
 	public async create(
 		data: CreateManifestData,
+		callOptions?: ShipStationCallOptions,
 	): Promise<CreateManifestResponse> {
-		return this.shipstation.request<CreateManifestResponse>({
-			url: this.baseUrl,
-			method: "POST",
-			data,
-		});
+		return this.shipstation.request<CreateManifestResponse>(
+			{
+				url: this.baseUrl,
+				method: "POST",
+				data,
+			},
+			callOptions,
+		);
 	}
 }

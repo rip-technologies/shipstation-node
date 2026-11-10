@@ -12,6 +12,16 @@ export interface ShipStationRequestOptions
 	method?: "GET" | "POST" | "PUT" | "DELETE";
 }
 
+/**
+ * Axios settings that can be changed for a single SDK call.
+ *
+ * `"axios-retry"` is merged over the client's `retryConfig` for that call only.
+ */
+export type ShipStationCallOptions = Pick<
+	AxiosRequestConfig,
+	"timeout" | "signal" | "axios-retry"
+>;
+
 export interface ShipStationOptions {
 	credentials: {
 		v1?: {
@@ -44,6 +54,20 @@ const isErrorResponse = (data: unknown): data is ErrorResponse =>
 	Array.isArray(data.errors) &&
 	data.errors.length > 0;
 
+// Copy only the allowed keys, so an object carrying other Axios fields (auth, params, ...) can't reach the request.
+// The retry settings are copied too, so axios-retry never writes its state onto the caller's object.
+const toCallConfig = (
+	callOptions: ShipStationCallOptions = {},
+): ShipStationCallOptions => {
+	const { timeout, signal, "axios-retry": retry } = callOptions;
+
+	return {
+		...(timeout !== undefined && { timeout }),
+		...(signal !== undefined && { signal }),
+		...(retry !== undefined && { "axios-retry": { ...retry } }),
+	};
+};
+
 export default abstract class BaseAPI {
 	private readonly type: "v1" | "v2";
 	private readonly baseURL: string;
@@ -64,13 +88,15 @@ export default abstract class BaseAPI {
 		// Initialize rate limiter
 		this.limiter = new RateLimiter(rateLimitOpts);
 
-		// Retry failed requests
-		if (options.retryConfig) {
-			axiosRetry(this.http, options.retryConfig);
-		}
+		// Retry failed requests. Always installed, so a per-call "axios-retry" policy works on a client without
+		// retryConfig; such a client still never retries by default.
+		axiosRetry(this.http, options.retryConfig ?? { retries: 0 });
 	}
 
-	public request = async <T>(requestData: ShipStationRequestOptions) => {
+	public request = async <T>(
+		requestData: ShipStationRequestOptions,
+		callOptions?: ShipStationCallOptions,
+	) => {
 		if (!this.authHeaders) {
 			throw new Error(`Credentials are not set for the ${this.type} API`);
 		}
@@ -79,7 +105,9 @@ export default abstract class BaseAPI {
 		await this.limiter.removeTokens(1);
 
 		try {
+			// The SDK's own fields come last so call options can't override them
 			const response = await this.http.request<T>({
+				...toCallConfig(callOptions),
 				baseURL: this.baseURL,
 				headers: this.authHeaders,
 				...requestData,

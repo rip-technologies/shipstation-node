@@ -1,4 +1,5 @@
 import type ShipStation from "../../BaseAPI";
+import type { ShipStationCallOptions } from "../../BaseAPI";
 import { BaseResource } from "../../BaseResource";
 import type {
 	AddFundsResponse,
@@ -24,14 +25,22 @@ export class Carriers extends BaseResource {
 	 *
 	 * @param carrierCode The code of the carrier to retrieve.
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The carrier details.
 	 */
-	public async get(carrierCode: string): Promise<CarrierResponseItem> {
-		return this.shipstation.request<CarrierResponseItem>({
-			url: this.baseUrl,
-			method: "GET",
-			params: { carrierCode },
-		});
+	public async get(
+		carrierCode: string,
+		callOptions?: ShipStationCallOptions,
+	): Promise<CarrierResponseItem> {
+		return this.shipstation.request<CarrierResponseItem>(
+			{
+				url: this.baseUrl,
+				method: "GET",
+				params: { carrierCode },
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -39,13 +48,20 @@ export class Carriers extends BaseResource {
 	 *
 	 * List all shipping providers connected to this account.
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns A list of carriers.
 	 */
-	public async list(): Promise<ListCarriersResponse> {
-		return this.shipstation.request<ListCarriersResponse>({
-			url: this.baseUrl,
-			method: "GET",
-		});
+	public async list(
+		callOptions?: ShipStationCallOptions,
+	): Promise<ListCarriersResponse> {
+		return this.shipstation.request<ListCarriersResponse>(
+			{
+				url: this.baseUrl,
+				method: "GET",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -63,17 +79,23 @@ export class Carriers extends BaseResource {
 	 * @param carrierCode The carrier to add funds to.
 	 * @param amount The dollar amount to add to the account. The minimum value that can be added is $10.00. The maximum value is $10,000.00.
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The updated carrier details.
 	 */
 	public async addFunds(
 		carrierCode: string,
 		amount: number,
+		callOptions?: ShipStationCallOptions,
 	): Promise<AddFundsResponse> {
-		return this.shipstation.request<AddFundsResponse>({
-			url: `${this.baseUrl}/addfunds`,
-			method: "POST",
-			data: { carrierCode, amount },
-		});
+		return this.shipstation.request<AddFundsResponse>(
+			{
+				url: `${this.baseUrl}/addfunds`,
+				method: "POST",
+				data: { carrierCode, amount },
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -86,16 +108,22 @@ export class Carriers extends BaseResource {
 	 *
 	 * @param carrierCode The carrier's code
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns A list of packages.
 	 */
 	public async listPackages(
 		carrierCode: string,
+		callOptions?: ShipStationCallOptions,
 	): Promise<ListPackagesResponse> {
-		return this.shipstation.request<ListPackagesResponse>({
-			url: `${this.baseUrl}/listpackages`,
-			method: "GET",
-			params: { carrierCode },
-		});
+		return this.shipstation.request<ListPackagesResponse>(
+			{
+				url: `${this.baseUrl}/listpackages`,
+				method: "GET",
+				params: { carrierCode },
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -108,15 +136,21 @@ export class Carriers extends BaseResource {
 	 *
 	 * @param carrierCode The carrier's code
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns A list of services.
 	 */
 	public async listServices(
 		carrierCode: string,
+		callOptions?: ShipStationCallOptions,
 	): Promise<ListServicesResponse> {
-		return this.shipstation.request<ListServicesResponse>({
-			url: `${this.baseUrl}/listservices`,
-			method: "GET",
-			params: { carrierCode },
-		});
+		return this.shipstation.request<ListServicesResponse>(
+			{
+				url: `${this.baseUrl}/listservices`,
+				method: "GET",
+				params: { carrierCode },
+			},
+			callOptions,
+		);
 	}
 }

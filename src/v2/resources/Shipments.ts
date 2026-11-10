@@ -1,4 +1,5 @@
 import type BaseAPI from "../../BaseAPI";
+import type { ShipStationCallOptions } from "../../BaseAPI";
 import { BaseResource } from "../../BaseResource";
 import type {
 	AddTagToShipmentResponse,
@@ -27,16 +28,22 @@ export class Shipments extends BaseResource {
 	 *
 	 * @param options Options for the list request
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns A list of shipments
 	 */
 	public async list(
 		options: ListShipmentsOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<ListShipmentsResponse> {
-		return this.shipstation.request<ListShipmentsResponse>({
-			url: this.baseUrl,
-			method: "GET",
-			params: options,
-		});
+		return this.shipstation.request<ListShipmentsResponse>(
+			{
+				url: this.baseUrl,
+				method: "GET",
+				params: options,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -47,13 +54,21 @@ export class Shipments extends BaseResource {
 	 * @param externalId The external shipment id
 	 * @example "0bcb569d-1727-4ff9-ab49-b2fec0cee5ae"
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The shipment specified by the external shipment id
 	 */
-	public async getByExternalId(externalId: string): Promise<Shipment> {
-		return this.shipstation.request<Shipment>({
-			url: `${this.baseUrl}/external_shipment_id/${externalId}`,
-			method: "GET",
-		});
+	public async getByExternalId(
+		externalId: string,
+		callOptions?: ShipStationCallOptions,
+	): Promise<Shipment> {
+		return this.shipstation.request<Shipment>(
+			{
+				url: `${this.baseUrl}/external_shipment_id/${externalId}`,
+				method: "GET",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -64,13 +79,21 @@ export class Shipments extends BaseResource {
 	 * @param shipmentId Shipment ID [1-25] characters `^se(-[a-z0-9]+)+$`
 	 * @example "se-28529731"
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The shipment specified by the shipment id
 	 */
-	public async getById(shipmentId: string): Promise<Shipment> {
-		return this.shipstation.request<Shipment>({
-			url: `${this.baseUrl}/${shipmentId}`,
-			method: "GET",
-		});
+	public async getById(
+		shipmentId: string,
+		callOptions?: ShipStationCallOptions,
+	): Promise<Shipment> {
+		return this.shipstation.request<Shipment>(
+			{
+				url: `${this.baseUrl}/${shipmentId}`,
+				method: "GET",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -81,12 +104,20 @@ export class Shipments extends BaseResource {
 	 * set time and only queries `pending` shipments. Marking a shipment as cancelled would remove it from this process
 	 *
 	 * @param shipmentId Shipment ID [1-25] characters `^se(-[a-z0-9]+)+$`
+	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
 	 */
-	public async cancel(shipmentId: string): Promise<void> {
-		await this.shipstation.request({
-			url: `${this.baseUrl}/${shipmentId}/cancel`,
-			method: "PUT",
-		});
+	public async cancel(
+		shipmentId: string,
+		callOptions?: ShipStationCallOptions,
+	): Promise<void> {
+		await this.shipstation.request(
+			{
+				url: `${this.baseUrl}/${shipmentId}/cancel`,
+				method: "PUT",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -98,17 +129,23 @@ export class Shipments extends BaseResource {
 	 * @example "se-28529731"
 	 *
 	 * @param options Options for the request
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The rates for the shipment
 	 */
 	public async getRates(
 		shipmentId: string,
 		options?: GetShipmentRatesOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<RatesInformation> {
-		return this.shipstation.request<RatesInformation>({
-			url: `${this.baseUrl}/${shipmentId}/rates`,
-			method: "GET",
-			params: options,
-		});
+		return this.shipstation.request<RatesInformation>(
+			{
+				url: `${this.baseUrl}/${shipmentId}/rates`,
+				method: "GET",
+				params: options,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -125,16 +162,22 @@ export class Shipments extends BaseResource {
 	 * customer.
 	 * @example "Fragile"
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The information about the added tag
 	 */
 	public async addTag(
 		shipmentId: string,
 		tagName: string,
+		callOptions?: ShipStationCallOptions,
 	): Promise<AddTagToShipmentResponse> {
-		return this.shipstation.request<AddTagToShipmentResponse>({
-			url: `${this.baseUrl}/${shipmentId}/tags/${tagName}`,
-			method: "POST",
-		});
+		return this.shipstation.request<AddTagToShipmentResponse>(
+			{
+				url: `${this.baseUrl}/${shipmentId}/tags/${tagName}`,
+				method: "POST",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -150,11 +193,20 @@ export class Shipments extends BaseResource {
 	 * Or maybe you want to create a tag for each of your customers so you can easily retrieve every shipment for a
 	 * customer.
 	 * @example "Fragile"
+	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
 	 */
-	public async removeTag(shipmentId: string, tagName: string): Promise<void> {
-		await this.shipstation.request({
-			url: `${this.baseUrl}/${shipmentId}/tags/${tagName}`,
-			method: "DELETE",
-		});
+	public async removeTag(
+		shipmentId: string,
+		tagName: string,
+		callOptions?: ShipStationCallOptions,
+	): Promise<void> {
+		await this.shipstation.request(
+			{
+				url: `${this.baseUrl}/${shipmentId}/tags/${tagName}`,
+				method: "DELETE",
+			},
+			callOptions,
+		);
 	}
 }

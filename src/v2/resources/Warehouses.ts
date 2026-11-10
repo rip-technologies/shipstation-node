@@ -1,4 +1,5 @@
 import type BaseAPI from "../../BaseAPI";
+import type { ShipStationCallOptions } from "../../BaseAPI";
 import { BaseResource } from "../../BaseResource";
 import type { ListWarehousesResponse, Warehouse } from "../types";
 
@@ -19,13 +20,21 @@ export class Warehouses extends BaseResource {
 	 *
 	 * @param warehouseId [1-25] characters `^se(-[a-z0-9]+)+$`
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns Warehouse details
 	 */
-	public async getById(warehouseId: string): Promise<Warehouse> {
-		return this.shipstation.request<Warehouse>({
-			url: `${this.baseUrl}/${warehouseId}`,
-			method: "GET",
-		});
+	public async getById(
+		warehouseId: string,
+		callOptions?: ShipStationCallOptions,
+	): Promise<Warehouse> {
+		return this.shipstation.request<Warehouse>(
+			{
+				url: `${this.baseUrl}/${warehouseId}`,
+				method: "GET",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -33,12 +42,19 @@ export class Warehouses extends BaseResource {
 	 *
 	 * Retrieve a list of warehouses associated with this account.
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns A list of warehouses
 	 */
-	public async list(): Promise<ListWarehousesResponse> {
-		return this.shipstation.request<ListWarehousesResponse>({
-			url: this.baseUrl,
-			method: "GET",
-		});
+	public async list(
+		callOptions?: ShipStationCallOptions,
+	): Promise<ListWarehousesResponse> {
+		return this.shipstation.request<ListWarehousesResponse>(
+			{
+				url: this.baseUrl,
+				method: "GET",
+			},
+			callOptions,
+		);
 	}
 }

@@ -1,4 +1,5 @@
 import type BaseAPI from "../../BaseAPI";
+import type { ShipStationCallOptions } from "../../BaseAPI";
 import { BaseResource } from "../../BaseResource";
 import type {
 	CreateOrUpdatePackageTypeOptions,
@@ -21,13 +22,20 @@ export class PackageTypes extends BaseResource {
 	 *
 	 * List the custom package types associated with the account
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns Package pickup details
 	 */
-	public async list(): Promise<ListPackageTypesResponse> {
-		return this.shipstation.request<ListPackageTypesResponse>({
-			url: this.baseUrl,
-			method: "GET",
-		});
+	public async list(
+		callOptions?: ShipStationCallOptions,
+	): Promise<ListPackageTypesResponse> {
+		return this.shipstation.request<ListPackageTypesResponse>(
+			{
+				url: this.baseUrl,
+				method: "GET",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -37,16 +45,22 @@ export class PackageTypes extends BaseResource {
 	 *
 	 * @param data Data for creating the package type
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The newly created package type
 	 */
 	public async create(
 		data: CreateOrUpdatePackageTypeOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<PackageType> {
-		return this.shipstation.request<PackageType>({
-			url: this.baseUrl,
-			method: "POST",
-			data,
-		});
+		return this.shipstation.request<PackageType>(
+			{
+				url: this.baseUrl,
+				method: "POST",
+				data,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -56,13 +70,21 @@ export class PackageTypes extends BaseResource {
 	 *
 	 * @param packageId ID of the package type to get [1-25] characters `^se(-[a-z0-9]+)+$`
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The package type with the given ID
 	 */
-	public async getById(packageId: string): Promise<PackageType> {
-		return this.shipstation.request<PackageType>({
-			url: `${this.baseUrl}/${packageId}`,
-			method: "GET",
-		});
+	public async getById(
+		packageId: string,
+		callOptions?: ShipStationCallOptions,
+	): Promise<PackageType> {
+		return this.shipstation.request<PackageType>(
+			{
+				url: `${this.baseUrl}/${packageId}`,
+				method: "GET",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -73,17 +95,23 @@ export class PackageTypes extends BaseResource {
 	 * @param packageId ID of the package type to update [1-25] characters `^se(-[a-z0-9]+)+$`
 	 * @param data Data for updating the package type
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The updated package type
 	 */
 	public async update(
 		packageId: string,
 		data: CreateOrUpdatePackageTypeOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<PackageType> {
-		return this.shipstation.request<PackageType>({
-			url: `${this.baseUrl}/${packageId}`,
-			method: "PUT",
-			data,
-		});
+		return this.shipstation.request<PackageType>(
+			{
+				url: `${this.baseUrl}/${packageId}`,
+				method: "PUT",
+				data,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -92,11 +120,19 @@ export class PackageTypes extends BaseResource {
 	 * Delete a custom package using the ID
 	 *
 	 * @param packageId ID of the package type to delete [1-25] characters `^se(-[a-z0-9]+)+$`
+	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
 	 */
-	public async delete(packageId: string): Promise<void> {
-		await this.shipstation.request({
-			url: `${this.baseUrl}/${packageId}`,
-			method: "DELETE",
-		});
+	public async delete(
+		packageId: string,
+		callOptions?: ShipStationCallOptions,
+	): Promise<void> {
+		await this.shipstation.request(
+			{
+				url: `${this.baseUrl}/${packageId}`,
+				method: "DELETE",
+			},
+			callOptions,
+		);
 	}
 }

@@ -1,4 +1,5 @@
 import type BaseAPI from "../../BaseAPI";
+import type { ShipStationCallOptions } from "../../BaseAPI";
 import { BaseResource } from "../../BaseResource";
 import type {
 	GetCarrierByIdResponse,
@@ -26,13 +27,21 @@ export class Carriers extends BaseResource {
 	 *
 	 * @param carrierId [1-25] characters `^se(-[a-z0-9]+)+$`
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns Carrier details
 	 */
-	public async getById(carrierId: string): Promise<GetCarrierByIdResponse> {
-		return this.shipstation.request<GetCarrierByIdResponse>({
-			url: `${this.baseUrl}/${carrierId}`,
-			method: "GET",
-		});
+	public async getById(
+		carrierId: string,
+		callOptions?: ShipStationCallOptions,
+	): Promise<GetCarrierByIdResponse> {
+		return this.shipstation.request<GetCarrierByIdResponse>(
+			{
+				url: `${this.baseUrl}/${carrierId}`,
+				method: "GET",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -40,13 +49,20 @@ export class Carriers extends BaseResource {
 	 *
 	 * List all carriers that have been added to this account.
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns A list of carriers
 	 */
-	public async list(): Promise<ListCarriersResponse> {
-		return this.shipstation.request<ListCarriersResponse>({
-			url: this.baseUrl,
-			method: "GET",
-		});
+	public async list(
+		callOptions?: ShipStationCallOptions,
+	): Promise<ListCarriersResponse> {
+		return this.shipstation.request<ListCarriersResponse>(
+			{
+				url: this.baseUrl,
+				method: "GET",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -56,15 +72,21 @@ export class Carriers extends BaseResource {
 	 *
 	 * @param carrierId [1-25] characters `^se(-[a-z0-9]+)+$`
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns A list of options for the carrier
 	 */
 	public async getOptions(
 		carrierId: string,
+		callOptions?: ShipStationCallOptions,
 	): Promise<GetCarrierOptionsResponse> {
-		return this.shipstation.request<GetCarrierOptionsResponse>({
-			url: `${this.baseUrl}/${carrierId}/options`,
-			method: "GET",
-		});
+		return this.shipstation.request<GetCarrierOptionsResponse>(
+			{
+				url: `${this.baseUrl}/${carrierId}/options`,
+				method: "GET",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -74,15 +96,21 @@ export class Carriers extends BaseResource {
 	 *
 	 * @param carrierId [1-25] characters `^se(-[a-z0-9]+)+$`
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns A list of services for the carrier
 	 */
 	public async listServices(
 		carrierId: string,
+		callOptions?: ShipStationCallOptions,
 	): Promise<ListCarrierServicesResponse> {
-		return this.shipstation.request<ListCarrierServicesResponse>({
-			url: `${this.baseUrl}/${carrierId}/services`,
-			method: "GET",
-		});
+		return this.shipstation.request<ListCarrierServicesResponse>(
+			{
+				url: `${this.baseUrl}/${carrierId}/services`,
+				method: "GET",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -92,14 +120,20 @@ export class Carriers extends BaseResource {
 	 *
 	 * @param carrierId [1-25] characters `^se(-[a-z0-9]+)+$`
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns A list of package types for the carrier
 	 */
 	public async listPackageTypes(
 		carrierId: string,
+		callOptions?: ShipStationCallOptions,
 	): Promise<ListCarrierPackageTypesResponse> {
-		return this.shipstation.request<ListCarrierPackageTypesResponse>({
-			url: `${this.baseUrl}/${carrierId}/packages`,
-			method: "GET",
-		});
+		return this.shipstation.request<ListCarrierPackageTypesResponse>(
+			{
+				url: `${this.baseUrl}/${carrierId}/packages`,
+				method: "GET",
+			},
+			callOptions,
+		);
 	}
 }

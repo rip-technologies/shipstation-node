@@ -1,4 +1,5 @@
 import type BaseAPI from "../../BaseAPI";
+import type { ShipStationCallOptions } from "../../BaseAPI";
 import { BaseResource } from "../../BaseResource";
 import type { DownloadFileOptions, DownloadFileResponse } from "../types";
 
@@ -19,16 +20,22 @@ export class Downloads extends BaseResource {
 	 *
 	 * @param options Options for the download request
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns Carrier details
 	 */
 	public async downloadFile(
 		options: DownloadFileOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<DownloadFileResponse> {
 		const { dir, subdir, filename, ...params } = options;
-		return this.shipstation.request<DownloadFileResponse>({
-			url: `${this.baseUrl}/${dir}/${subdir}/${filename}`,
-			method: "GET",
-			params,
-		});
+		return this.shipstation.request<DownloadFileResponse>(
+			{
+				url: `${this.baseUrl}/${dir}/${subdir}/${filename}`,
+				method: "GET",
+				params,
+			},
+			callOptions,
+		);
 	}
 }

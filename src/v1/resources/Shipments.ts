@@ -1,4 +1,5 @@
 import type ShipStation from "../../BaseAPI";
+import type { ShipStationCallOptions } from "../../BaseAPI";
 import { BaseResource } from "../../BaseResource";
 import type {
 	CreateShipmentLabelOptions,
@@ -30,16 +31,22 @@ export class Shipments extends BaseResource {
 	 *
 	 * @param params The parameters for the request.
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The list of shipments.
 	 */
 	public async list(
 		params?: ListShipmentsOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<ListShipmentsResponse> {
-		return this.shipstation.request<ListShipmentsResponse>({
-			url: this.baseUrl,
-			method: "GET",
-			params,
-		});
+		return this.shipstation.request<ListShipmentsResponse>(
+			{
+				url: this.baseUrl,
+				method: "GET",
+				params,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -49,14 +56,22 @@ export class Shipments extends BaseResource {
 	 *
 	 * @param data The data for the request.
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The shipping rates.
 	 */
-	public async getRates(data: GetRatesOptions): Promise<GetRatesResponse> {
-		return this.shipstation.request<GetRatesResponse>({
-			url: `${this.baseUrl}/getrates`,
-			method: "POST",
-			data,
-		});
+	public async getRates(
+		data: GetRatesOptions,
+		callOptions?: ShipStationCallOptions,
+	): Promise<GetRatesResponse> {
+		return this.shipstation.request<GetRatesResponse>(
+			{
+				url: `${this.baseUrl}/getrates`,
+				method: "POST",
+				data,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -76,16 +91,22 @@ export class Shipments extends BaseResource {
 	 *
 	 * @param data The data for the request.
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The created label.
 	 */
 	public async createLabel(
 		data: CreateShipmentLabelOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<ShipmentResponseItem> {
-		return this.shipstation.request<ShipmentResponseItem>({
-			url: `${this.baseUrl}/createlabel`,
-			method: "POST",
-			data,
-		});
+		return this.shipstation.request<ShipmentResponseItem>(
+			{
+				url: `${this.baseUrl}/createlabel`,
+				method: "POST",
+				data,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -95,15 +116,21 @@ export class Shipments extends BaseResource {
 	 *
 	 * @param shipmentId ID of the shipment to void.
 	 *
+	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 *
 	 * @returns The status of voiding the label.
 	 */
 	public async voidLabel(
 		shipmentId: number,
+		callOptions?: ShipStationCallOptions,
 	): Promise<VoidShipmentLabelResponse> {
-		return this.shipstation.request<VoidShipmentLabelResponse>({
-			url: `${this.baseUrl}/voidlabel`,
-			method: "POST",
-			data: { shipmentId },
-		});
+		return this.shipstation.request<VoidShipmentLabelResponse>(
+			{
+				url: `${this.baseUrl}/voidlabel`,
+				method: "POST",
+				data: { shipmentId },
+			},
+			callOptions,
+		);
 	}
 }
