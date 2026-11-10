@@ -31,3 +31,6 @@ jobs:
 
       - name: Run Build
         run: bun run build --noEmit
+
+      - name: Run Tests
+        run: bun run test

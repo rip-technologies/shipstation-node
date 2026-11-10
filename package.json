@@ -34,8 +34,9 @@
 	"scripts": {
 		"build": "tsc",
 		"format": "biome check . --write --unsafe --error-on-warnings",
-		"check": "biome ${CI:+ci} ${CI:-check} . --error-on-warnings"
+		"check": "biome ${CI:+ci} ${CI:-check} . --error-on-warnings",
+		"test": "bun test"
 	},
 	"types": "dist/index.d.ts",
-	"version": "2.2.3"
+	"version": "2.2.4"
 }

@@ -1,4 +1,4 @@
-import type { AxiosError, AxiosRequestConfig } from "axios";
+import type { AxiosError, AxiosInstance, AxiosRequestConfig } from "axios";
 import axios from "axios";
 import type { IAxiosRetryConfig } from "axios-retry";
 import axiosRetry from "axios-retry";
@@ -47,7 +47,7 @@ const isErrorResponse = (data: unknown): data is ErrorResponse =>
 export default abstract class BaseAPI {
 	private readonly type: "v1" | "v2";
 	private readonly baseURL: string;
-	private readonly requestConfig?: ShipStationOptions["requestConfig"];
+	private readonly http: AxiosInstance;
 	private readonly limiter: RateLimiter;
 	protected authHeaders?: Record<string, string>;
 
@@ -59,13 +59,14 @@ export default abstract class BaseAPI {
 	) {
 		this.type = type;
 		this.baseURL = baseUrl;
+		this.http = axios.create(options.requestConfig);
 
 		// Initialize rate limiter
 		this.limiter = new RateLimiter(rateLimitOpts);
 
 		// Retry failed requests
 		if (options.retryConfig) {
-			axiosRetry(axios, options.retryConfig);
+			axiosRetry(this.http, options.retryConfig);
 		}
 	}
 
@@ -78,10 +79,9 @@ export default abstract class BaseAPI {
 		await this.limiter.removeTokens(1);
 
 		try {
-			const response = await axios.request<T>({
+			const response = await this.http.request<T>({
 				baseURL: this.baseURL,
 				headers: this.authHeaders,
-				...this.requestConfig,
 				...requestData,
 			});
 
