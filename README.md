@@ -162,11 +162,7 @@ const label = await shipstation.v2.labels.purchase(labelRequest, {
 ```
 
 Per-call `"axios-retry"` settings are merged over the client's `retryConfig`, so you only need to pass the fields you
-want to change. This works even when the client has no `retryConfig`.
-
-> [!NOTE]
-> By default axios-retry counts `timeout` across all attempts, so a request that already used up its timeout is not
-> retried. Set `shouldResetTimeout: true` to give each attempt the full timeout.
+want to change.
 
 ---
 
