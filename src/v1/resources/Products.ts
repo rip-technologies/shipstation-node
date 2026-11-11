@@ -24,7 +24,7 @@ export class Products extends BaseResource {
 	 *
 	 * @param productId The system-generated identifier for the Product.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The product.
 	 */
@@ -48,7 +48,7 @@ export class Products extends BaseResource {
 	 *
 	 * @param params The parameters for the request.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The list of products.
 	 */
@@ -79,7 +79,7 @@ export class Products extends BaseResource {
 	 *
 	 * @param data The product data.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The status of the update operation.
 	 */

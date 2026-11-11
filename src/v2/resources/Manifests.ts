@@ -28,7 +28,7 @@ export class Manifests extends BaseResource {
 	 *
 	 * @param params Options for listing the manifests
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns A list of manifests
 	 */
@@ -55,7 +55,7 @@ export class Manifests extends BaseResource {
 	 *
 	 * @example "se-28529731"
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns A manifest
 	 */
@@ -80,7 +80,7 @@ export class Manifests extends BaseResource {
 	 *
 	 * @param params Data for creating a manifest
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns A manifest
 	 */

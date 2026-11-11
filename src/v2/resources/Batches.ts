@@ -30,7 +30,7 @@ export class Batches extends BaseResource {
 	 *
 	 * @param options Options for the list request
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns A list of batches
 	 */
@@ -55,7 +55,7 @@ export class Batches extends BaseResource {
 	 *
 	 * @param options Options for the create request
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The newly created batch
 	 */
@@ -81,7 +81,7 @@ export class Batches extends BaseResource {
 	 * @param batchId The batch ID of the batch to retrieve [1-25] characters `^se(-[a-z0-9]+)+$`
 	 * @example "se-28529731"
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns A batch specified by its batch ID
 	 */
@@ -105,7 +105,7 @@ export class Batches extends BaseResource {
 	 *
 	 * @param externalBatchId The external batch ID of the batch to retrieve
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns A batch specified by its external batch ID
 	 */
@@ -130,7 +130,7 @@ export class Batches extends BaseResource {
 	 * @param batchId The batch ID of the batch to retrieve [1-25] characters `^se(-[a-z0-9]+)+$`
 	 * @example "se-28529731"
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 */
 	public async delete(
 		batchId: string,
@@ -153,7 +153,7 @@ export class Batches extends BaseResource {
 	 * @param batchId The batch ID of the batch to retrieve [1-25] characters `^se(-[a-z0-9]+)+$`
 	 * @example "se-28529731"
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 */
 	public async updateToArchived(
 		batchId: string,
@@ -178,7 +178,7 @@ export class Batches extends BaseResource {
 	 *
 	 * @param data The data to add to the batch
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 */
 	public async addToBatch(
 		batchId: string,
@@ -206,7 +206,7 @@ export class Batches extends BaseResource {
 	 *
 	 * @param options Options for the list request
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns A list of batch errors
 	 */
@@ -235,7 +235,7 @@ export class Batches extends BaseResource {
 	 *
 	 * @param options Options for the process request
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 */
 	public async processLabels(
 		batchId: string,
@@ -262,7 +262,7 @@ export class Batches extends BaseResource {
 	 *
 	 * @param data The data to remove from the batch
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 */
 	public async removeFromBatch(
 		batchId: string,

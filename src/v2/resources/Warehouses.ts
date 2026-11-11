@@ -20,7 +20,7 @@ export class Warehouses extends BaseResource {
 	 *
 	 * @param warehouseId [1-25] characters `^se(-[a-z0-9]+)+$`
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns Warehouse details
 	 */
@@ -42,7 +42,7 @@ export class Warehouses extends BaseResource {
 	 *
 	 * Retrieve a list of warehouses associated with this account.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns A list of warehouses
 	 */

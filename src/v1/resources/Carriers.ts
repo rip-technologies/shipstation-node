@@ -25,7 +25,7 @@ export class Carriers extends BaseResource {
 	 *
 	 * @param carrierCode The code of the carrier to retrieve.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The carrier details.
 	 */
@@ -48,7 +48,7 @@ export class Carriers extends BaseResource {
 	 *
 	 * List all shipping providers connected to this account.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns A list of carriers.
 	 */
@@ -79,7 +79,7 @@ export class Carriers extends BaseResource {
 	 * @param carrierCode The carrier to add funds to.
 	 * @param amount The dollar amount to add to the account. The minimum value that can be added is $10.00. The maximum value is $10,000.00.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The updated carrier details.
 	 */
@@ -108,7 +108,7 @@ export class Carriers extends BaseResource {
 	 *
 	 * @param carrierCode The carrier's code
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns A list of packages.
 	 */
@@ -136,7 +136,7 @@ export class Carriers extends BaseResource {
 	 *
 	 * @param carrierCode The carrier's code
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns A list of services.
 	 */

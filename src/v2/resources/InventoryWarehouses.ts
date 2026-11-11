@@ -22,7 +22,7 @@ export class InventoryWarehouses extends BaseResource {
 	 *
 	 * @param options Options for the request
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns List of inventory warehouses
 	 */
@@ -45,7 +45,7 @@ export class InventoryWarehouses extends BaseResource {
 	 *
 	 * @param name Name of the inventory warehouse
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The newly created inventory warehouse
 	 */
@@ -68,7 +68,7 @@ export class InventoryWarehouses extends BaseResource {
 	 *
 	 * @param inventoryWarehouseId ID of the inventory warehouse to get
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The inventory warehouse with the given ID
 	 */
@@ -91,7 +91,7 @@ export class InventoryWarehouses extends BaseResource {
 	 * @param inventoryWarehouseId ID of the inventory warehouse to update
 	 * @param name New name for the inventory warehouse
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The updated inventory warehouse
 	 */
@@ -115,7 +115,7 @@ export class InventoryWarehouses extends BaseResource {
 	 *
 	 * @param inventoryWarehouseId ID of the inventory warehouse to delete
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 */
 	public async delete(
 		inventoryWarehouseId: string,

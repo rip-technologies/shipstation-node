@@ -18,7 +18,7 @@ export class Tags extends BaseResource {
 	 *
 	 * Get a list of all tags associated with an account.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns A list of tags for the account.
 	 */
@@ -44,7 +44,7 @@ export class Tags extends BaseResource {
 	 * Or maybe you want to create a tag for each of your customers so you can easily retrieve every shipment for a
 	 * customer.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 */
 	public async create(
 		tagName: string,

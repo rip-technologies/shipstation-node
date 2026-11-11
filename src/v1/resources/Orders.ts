@@ -35,7 +35,7 @@ export class Orders extends BaseResource {
 	 *
 	 * @param orderId The ID of the order to retrieve.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The order details.
 	 */
@@ -59,7 +59,7 @@ export class Orders extends BaseResource {
 	 *
 	 * @param params The parameters for the request.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns A list of orders.
 	 */
@@ -84,7 +84,7 @@ export class Orders extends BaseResource {
 	 *
 	 * @param params The parameters for the request.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns A list of orders by tag.
 	 */
@@ -122,7 +122,7 @@ export class Orders extends BaseResource {
 	 *
 	 * @param data The data for the request.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The created or updated order.
 	 */
@@ -161,7 +161,7 @@ export class Orders extends BaseResource {
 	 * @param orders An array of [Order](https://www.shipstation.com/docs/api/models/order/) objects (maximum of 100 per
 	 * request).
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The created or updated orders.
 	 */
@@ -187,7 +187,7 @@ export class Orders extends BaseResource {
 	 *
 	 * @param data The data for the request.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The created label.
 	 */
@@ -224,7 +224,7 @@ export class Orders extends BaseResource {
 	 * @param orderId Identifies the order that will be tagged.
 	 * @param tagId Identifies the tag that will be applied to the order.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The success status of the operation.
 	 */
@@ -262,7 +262,7 @@ export class Orders extends BaseResource {
 	 * @param orderId Identifies the order whose tag will be removed.
 	 * @param tagId Identifies the tag to remove.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The success status of the operation.
 	 */
@@ -288,7 +288,7 @@ export class Orders extends BaseResource {
 	 *
 	 * @param data The data for the request.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The details of the order that was marked as shipped.
 	 */
@@ -314,7 +314,7 @@ export class Orders extends BaseResource {
 	 *
 	 * @param orderId The ID of the order to delete.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The success status of the operation.
 	 */
@@ -349,7 +349,7 @@ export class Orders extends BaseResource {
 	 * @param userId Identifies the user that will be applied to the orders. It should contain a GUID of the user to be
 	 * assigned to the array of orders.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The success status of the operation.
 	 */
@@ -385,7 +385,7 @@ export class Orders extends BaseResource {
 	 *
 	 * **NOTE:** If ANY of the orders within the array are not found, no orders will have their users unassigned.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The success status of the operation.
 	 */
@@ -420,7 +420,7 @@ export class Orders extends BaseResource {
 	 * @param orderId Identifies the order that will be held.
 	 * @param holdUntilDate Date when order is moved from `on_hold` status to `awaiting_shipment`.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The success status of the operation.
 	 */
@@ -456,7 +456,7 @@ export class Orders extends BaseResource {
 	 *
 	 * @param orderId Identifies the order that will be restored to `awaiting_shipment` status from `on_hold`.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The success status of the operation.
 	 */

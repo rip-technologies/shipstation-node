@@ -266,47 +266,47 @@ describe("per-call options", () => {
 	});
 
 	for (const version of ["v1", "v2"] as const) {
-		it(`does not let call options override the SDK's request fields for ${version}`, async () => {
+		it(`lets call options override the SDK's request settings for ${version}`, async () => {
 			const adapter = mock(respond({}));
 			const client = new ShipStation({
 				credentials,
 				requestConfig: { adapter },
 			});
-			const hostile = {
-				timeout: 1000,
-				baseURL: "https://attacker.example.com/",
-				url: "elsewhere",
-				method: "DELETE",
-				headers: { Authorization: "Basic stolen", "API-Key": "stolen" },
-				auth: { username: "attacker", password: "secret" },
-				params: { injected: true },
-				data: { injected: true },
-			} as ShipStationCallOptions;
+			const callOptions: ShipStationCallOptions = {
+				baseURL: "https://proxy.example.com/",
+				headers: { "X-Trace-Id": "trace-1" },
+				params: { extra: true },
+			};
 
 			if (version === "v1") {
-				await client.v1.orders.get(1, hostile);
+				await client.v1.orders.get(1, callOptions);
 			} else {
-				await client.v2.rates.getById("se-1", hostile);
+				await client.v2.rates.getById("se-1", callOptions);
 			}
 
 			const config = adapter.mock.calls[0]?.[0];
-			expect(config?.timeout).toBe(1000);
-			expect(config?.auth).toBeUndefined();
-			expect(config?.params).toBeUndefined();
-			expect(config?.data).toBeUndefined();
-			expect(config?.method).toBe("get");
+			expect(config?.baseURL).toBe("https://proxy.example.com/");
+			expect(config?.params).toEqual({ extra: true });
+			expect(config?.headers["X-Trace-Id"]).toBe("trace-1");
+			// Adding a header keeps the SDK's auth header
 			if (version === "v1") {
-				expect(config?.baseURL).toBe("https://ssapi.shipstation.com/");
 				expect(config?.url).toBe("orders/1");
 				expect(config?.headers.Authorization).toBe(
 					`Basic ${Buffer.from("v1-test-key:v1-test-secret").toString("base64")}`,
 				);
 			} else {
-				expect(config?.baseURL).toBe("https://api.shipstation.com/v2");
 				expect(config?.url).toBe("rates/se-1");
 				expect(config?.headers["API-Key"]).toBe("v2-test-key");
-				expect(config?.headers.Authorization).toBeUndefined();
 			}
 		});
 	}
+
+	it("lets call options replace the auth header explicitly", async () => {
+		const adapter = mock(respond({}));
+		const client = new ShipStation({ credentials, requestConfig: { adapter } });
+
+		await client.v2.tags.get({ headers: { "API-Key": "other-key" } });
+
+		expect(adapter.mock.calls[0]?.[0].headers["API-Key"]).toBe("other-key");
+	});
 });

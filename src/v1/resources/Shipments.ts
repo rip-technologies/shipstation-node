@@ -31,7 +31,7 @@ export class Shipments extends BaseResource {
 	 *
 	 * @param params The parameters for the request.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The list of shipments.
 	 */
@@ -56,7 +56,7 @@ export class Shipments extends BaseResource {
 	 *
 	 * @param data The data for the request.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The shipping rates.
 	 */
@@ -91,7 +91,7 @@ export class Shipments extends BaseResource {
 	 *
 	 * @param data The data for the request.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The created label.
 	 */
@@ -116,7 +116,7 @@ export class Shipments extends BaseResource {
 	 *
 	 * @param shipmentId ID of the shipment to void.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The status of voiding the label.
 	 */

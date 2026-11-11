@@ -13,14 +13,10 @@ export interface ShipStationRequestOptions
 }
 
 /**
- * Axios settings that can be changed for a single SDK call.
- *
- * `"axios-retry"` is merged over the client's `retryConfig` for that call only.
+ * Axios request config for a single SDK call. It is applied after the SDK's own settings, so it can override them.
+ * Headers are merged with the auth headers, and `"axios-retry"` is merged over the client's `retryConfig`.
  */
-export type ShipStationCallOptions = Pick<
-	AxiosRequestConfig,
-	"timeout" | "signal" | "axios-retry"
->;
+export type ShipStationCallOptions = AxiosRequestConfig;
 
 export interface ShipStationOptions {
 	credentials: {
@@ -53,20 +49,6 @@ const isErrorResponse = (data: unknown): data is ErrorResponse =>
 	"errors" in data &&
 	Array.isArray(data.errors) &&
 	data.errors.length > 0;
-
-// Copy only the allowed keys, so an object carrying other Axios fields (auth, params, ...) can't reach the request.
-// The retry settings are copied too, so axios-retry never writes its state onto the caller's object.
-const toCallConfig = (
-	callOptions: ShipStationCallOptions = {},
-): ShipStationCallOptions => {
-	const { timeout, signal, "axios-retry": retry } = callOptions;
-
-	return {
-		...(timeout !== undefined && { timeout }),
-		...(signal !== undefined && { signal }),
-		...(retry !== undefined && { "axios-retry": { ...retry } }),
-	};
-};
 
 export default abstract class BaseAPI {
 	private readonly type: "v1" | "v2";
@@ -105,12 +87,11 @@ export default abstract class BaseAPI {
 		await this.limiter.removeTokens(1);
 
 		try {
-			// The SDK's own fields come last so call options can't override them
 			const response = await this.http.request<T>({
-				...toCallConfig(callOptions),
 				baseURL: this.baseURL,
-				headers: this.authHeaders,
 				...requestData,
+				...callOptions,
+				headers: { ...this.authHeaders, ...callOptions?.headers },
 			});
 
 			return response.data;

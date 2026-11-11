@@ -28,7 +28,7 @@ export class Rates extends BaseResource {
 	 * @param rateId Rate ID [1-25] characters `^se(-[a-z0-9]+)+$`
 	 * @example "se-28529731"
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The rate specified by the ID
 	 */
@@ -54,7 +54,7 @@ export class Rates extends BaseResource {
 	 *
 	 * @param options The options for the request
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns
 	 */
@@ -79,7 +79,7 @@ export class Rates extends BaseResource {
 	 *
 	 * @param options The options for the request
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns A list of rate estimates
 	 */

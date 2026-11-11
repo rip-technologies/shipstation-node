@@ -20,7 +20,7 @@ export class Customers extends BaseResource {
 	 *
 	 * @param customerId The system-generated identifier for the Customer.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The details of the customer.
 	 */
@@ -42,7 +42,7 @@ export class Customers extends BaseResource {
 	 *
 	 * Obtains a list of customers that match the specified criteria.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns A list of tags for the account.
 	 */

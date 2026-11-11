@@ -20,7 +20,7 @@ export class Downloads extends BaseResource {
 	 *
 	 * @param options Options for the download request
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns Carrier details
 	 */

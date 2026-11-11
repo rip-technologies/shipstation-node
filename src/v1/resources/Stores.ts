@@ -28,7 +28,7 @@ export class Stores extends BaseResource {
 	 *
 	 * @param storeId Unique identifier for the store.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The store details.
 	 */
@@ -52,7 +52,7 @@ export class Stores extends BaseResource {
 	 *
 	 * @param params The parameters for the request.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The list of stores.
 	 */
@@ -75,7 +75,7 @@ export class Stores extends BaseResource {
 	 *
 	 * Lists the marketplaces that can be integrated with ShipStation.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The list of marketplaces.
 	 */
@@ -103,7 +103,7 @@ export class Stores extends BaseResource {
 	 *
 	 * @param storeId ID of the store to deactivate.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The status of the deactivate operation.
 	 */
@@ -133,7 +133,7 @@ export class Stores extends BaseResource {
 	 *
 	 * @param storeId Specifies the store whose status will be retrieved.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The refresh rate data of the store.
 	 */
@@ -163,7 +163,7 @@ export class Stores extends BaseResource {
 	 *
 	 * @param storeId ID of the store to reactivate.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The status of the reactivate operation.
 	 */
@@ -191,7 +191,7 @@ export class Stores extends BaseResource {
 	 *
 	 * @param params The parameters for the request.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The status of the refresh operation.
 	 */
@@ -222,7 +222,7 @@ export class Stores extends BaseResource {
 	 *
 	 * @param storeId Unique identifier for the store
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The newly updated store.
 	 */

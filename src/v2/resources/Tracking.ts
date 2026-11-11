@@ -24,7 +24,7 @@ export class Tracking extends BaseResource {
 	 * @param trackingNumber The tracking number associated with a shipment
 	 * @example "9405511899223197428490"
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 */
 	public async stop(
 		carrierCode: CarrierCode,

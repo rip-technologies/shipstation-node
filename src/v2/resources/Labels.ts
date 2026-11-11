@@ -36,7 +36,7 @@ export class Labels extends BaseResource {
 	 *
 	 * @param options Options for the list request
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns A `labels` array containing a page of results (as determined by the `page_size` query parameter). It also
 	 * includes other useful information, such as the total number of labels that match the query criteria, the number of
@@ -66,7 +66,7 @@ export class Labels extends BaseResource {
 	 *
 	 * @param options Options for the get request
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The label specified by the label id.
 	 */
@@ -93,7 +93,7 @@ export class Labels extends BaseResource {
 	 * @param labelId The ID of the label to get [1-25] characters `^se(-[a-z0-9]+)+$`
 	 * @example "se-28529731"
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The label specified by the tracking number.
 	 */
@@ -119,7 +119,7 @@ export class Labels extends BaseResource {
 	 * @param labelId The ID of the label to void [1-25] characters `^se(-[a-z0-9]+)+$`
 	 * @example "se-28529731"
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The status of the void operation.
 	 */
@@ -143,7 +143,7 @@ export class Labels extends BaseResource {
 	 *
 	 * @param data The data for the purchase request
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The newly purchased label.
 	 */
@@ -172,7 +172,7 @@ export class Labels extends BaseResource {
 	 *
 	 * @param options Options for the purchase request
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The newly purchased label.
 	 */
@@ -201,7 +201,7 @@ export class Labels extends BaseResource {
 	 *
 	 * @param options Options for the purchase request
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The newly purchased label.
 	 */
@@ -231,7 +231,7 @@ export class Labels extends BaseResource {
 	 *
 	 * @param options Options for the purchase request
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The newly purchased label.
 	 */

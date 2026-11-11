@@ -27,7 +27,7 @@ export class PackagePickups extends BaseResource {
 	 * @param pickupId Pickup Resource ID (>= 4 characters)
 	 * @example "pik_3YcKU5zdtJuCqoeNwyqqbW"
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns Package pickup details
 	 */
@@ -51,7 +51,7 @@ export class PackagePickups extends BaseResource {
 	 *
 	 * @param options List package pickups options
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns List of package pickups
 	 */
@@ -77,7 +77,7 @@ export class PackagePickups extends BaseResource {
 	 * @param labelIds Label IDs that will be included in the pickup request
 	 * @example ["se-28529731"]
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns Scheduled package pickup details
 	 */
@@ -103,7 +103,7 @@ export class PackagePickups extends BaseResource {
 	 * @param pickupId Pickup Resource ID (>= 4 characters)
 	 * @example "pik_3YcKU5zdtJuCqoeNwyqqbW"
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns Deleted package pickup ID
 	 */

@@ -25,7 +25,7 @@ export class Webhooks extends BaseResource {
 	 *
 	 * List all webhooks currently enabled for the account.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns A list of webhooks
 	 */
@@ -48,7 +48,7 @@ export class Webhooks extends BaseResource {
 	 *
 	 * @param data The data for the new webhook
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The newly created webhook
 	 */
@@ -74,7 +74,7 @@ export class Webhooks extends BaseResource {
 	 * @param webhookId Webhook ID [1-25] characters `^se(-[a-z0-9]+)+$`
 	 * @example "se-28529731"
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The webhook specified by the ID
 	 */
@@ -101,7 +101,7 @@ export class Webhooks extends BaseResource {
 	 *
 	 * @param data The data for updating the webhook
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 */
 	public async update(
 		webhookId: string,
@@ -125,7 +125,7 @@ export class Webhooks extends BaseResource {
 	 *
 	 * @param webhookId Webhook ID [1-25] characters `^se(-[a-z0-9]+)+$`
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 */
 	public async deleteById(
 		webhookId: string,

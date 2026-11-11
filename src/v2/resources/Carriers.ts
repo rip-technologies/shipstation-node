@@ -27,7 +27,7 @@ export class Carriers extends BaseResource {
 	 *
 	 * @param carrierId [1-25] characters `^se(-[a-z0-9]+)+$`
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns Carrier details
 	 */
@@ -49,7 +49,7 @@ export class Carriers extends BaseResource {
 	 *
 	 * List all carriers that have been added to this account.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns A list of carriers
 	 */
@@ -72,7 +72,7 @@ export class Carriers extends BaseResource {
 	 *
 	 * @param carrierId [1-25] characters `^se(-[a-z0-9]+)+$`
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns A list of options for the carrier
 	 */
@@ -96,7 +96,7 @@ export class Carriers extends BaseResource {
 	 *
 	 * @param carrierId [1-25] characters `^se(-[a-z0-9]+)+$`
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns A list of services for the carrier
 	 */
@@ -120,7 +120,7 @@ export class Carriers extends BaseResource {
 	 *
 	 * @param carrierId [1-25] characters `^se(-[a-z0-9]+)+$`
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns A list of package types for the carrier
 	 */

@@ -22,7 +22,7 @@ export class Fulfillments extends BaseResource {
 	 *
 	 * @param params The parameters for the request.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns A list of fulfillments.
 	 */

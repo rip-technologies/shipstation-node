@@ -22,7 +22,7 @@ export class PackageTypes extends BaseResource {
 	 *
 	 * List the custom package types associated with the account
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns Package pickup details
 	 */
@@ -45,7 +45,7 @@ export class PackageTypes extends BaseResource {
 	 *
 	 * @param data Data for creating the package type
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The newly created package type
 	 */
@@ -70,7 +70,7 @@ export class PackageTypes extends BaseResource {
 	 *
 	 * @param packageId ID of the package type to get [1-25] characters `^se(-[a-z0-9]+)+$`
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The package type with the given ID
 	 */
@@ -95,7 +95,7 @@ export class PackageTypes extends BaseResource {
 	 * @param packageId ID of the package type to update [1-25] characters `^se(-[a-z0-9]+)+$`
 	 * @param data Data for updating the package type
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The updated package type
 	 */
@@ -121,7 +121,7 @@ export class PackageTypes extends BaseResource {
 	 *
 	 * @param packageId ID of the package type to delete [1-25] characters `^se(-[a-z0-9]+)+$`
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 */
 	public async delete(
 		packageId: string,

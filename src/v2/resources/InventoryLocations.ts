@@ -24,7 +24,7 @@ export class InventoryLocations extends BaseResource {
 	 *
 	 * @param options Options for the request
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns List of inventory locations
 	 */
@@ -47,7 +47,7 @@ export class InventoryLocations extends BaseResource {
 	 *
 	 * @param data Data for creating the inventory location
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The newly created inventory location
 	 */
@@ -70,7 +70,7 @@ export class InventoryLocations extends BaseResource {
 	 *
 	 * @param inventoryLocationId ID of the inventory location to get
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The inventory location with the given ID
 	 */
@@ -93,7 +93,7 @@ export class InventoryLocations extends BaseResource {
 	 * @param inventoryLocationId ID of the inventory location to update
 	 * @param name New name for the inventory location
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 */
 	public async update(
 		inventoryLocationId: string,
@@ -116,7 +116,7 @@ export class InventoryLocations extends BaseResource {
 	 * @param inventoryLocationId ID of the inventory location to delete
 	 * @param options Options for the request
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 */
 	public async delete(
 		inventoryLocationId: string,

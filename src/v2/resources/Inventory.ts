@@ -22,7 +22,7 @@ export class Inventory extends BaseResource {
 	 *
 	 * @param options Options for the request
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns SKU inventory levels
 	 */
@@ -45,7 +45,7 @@ export class Inventory extends BaseResource {
 	 *
 	 * @param data Data for the request
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 */
 	public async updateSKULevelsAndProperties(
 		options: UpdateSKULevelsAndPropertiesOptions,

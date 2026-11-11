@@ -28,7 +28,7 @@ export class Accounts extends BaseResource {
 	 *
 	 * @param data The data for the request.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The details of the newly created account.
 	 */
@@ -51,7 +51,7 @@ export class Accounts extends BaseResource {
 	 *
 	 * List all tags defined for this account.
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns A list of tags for the account.
 	 */

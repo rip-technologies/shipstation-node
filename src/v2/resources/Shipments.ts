@@ -28,7 +28,7 @@ export class Shipments extends BaseResource {
 	 *
 	 * @param options Options for the list request
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns A list of shipments
 	 */
@@ -54,7 +54,7 @@ export class Shipments extends BaseResource {
 	 * @param externalId The external shipment id
 	 * @example "0bcb569d-1727-4ff9-ab49-b2fec0cee5ae"
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The shipment specified by the external shipment id
 	 */
@@ -79,7 +79,7 @@ export class Shipments extends BaseResource {
 	 * @param shipmentId Shipment ID [1-25] characters `^se(-[a-z0-9]+)+$`
 	 * @example "se-28529731"
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The shipment specified by the shipment id
 	 */
@@ -105,7 +105,7 @@ export class Shipments extends BaseResource {
 	 *
 	 * @param shipmentId Shipment ID [1-25] characters `^se(-[a-z0-9]+)+$`
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 */
 	public async cancel(
 		shipmentId: string,
@@ -129,7 +129,7 @@ export class Shipments extends BaseResource {
 	 * @example "se-28529731"
 	 *
 	 * @param options Options for the request
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The rates for the shipment
 	 */
@@ -162,7 +162,7 @@ export class Shipments extends BaseResource {
 	 * customer.
 	 * @example "Fragile"
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 *
 	 * @returns The information about the added tag
 	 */
@@ -194,7 +194,7 @@ export class Shipments extends BaseResource {
 	 * customer.
 	 * @example "Fragile"
 	 *
-	 * @param callOptions Per-call timeout, abort signal and retry settings
+	 * @param callOptions Axios request config for this call only
 	 */
 	public async removeTag(
 		shipmentId: string,
