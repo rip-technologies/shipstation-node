@@ -1,4 +1,5 @@
 import type BaseAPI from "../../BaseAPI";
+import type { ShipStationCallOptions } from "../../BaseAPI";
 import { BaseResource } from "../../BaseResource";
 import type {
 	CreateInventoryLocationOptions,
@@ -23,16 +24,22 @@ export class InventoryLocations extends BaseResource {
 	 *
 	 * @param options Options for the request
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns List of inventory locations
 	 */
 	public async list(
 		options?: ListInventoryLocationsOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<ListInventoryLocationsResponse> {
-		return this.shipstation.request<ListInventoryLocationsResponse>({
-			url: this.baseUrl,
-			method: "GET",
-			params: options,
-		});
+		return this.shipstation.request<ListInventoryLocationsResponse>(
+			{
+				url: this.baseUrl,
+				method: "GET",
+				params: options,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -40,16 +47,22 @@ export class InventoryLocations extends BaseResource {
 	 *
 	 * @param data Data for creating the inventory location
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns The newly created inventory location
 	 */
 	public async create(
 		data: CreateInventoryLocationOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<InventoryLocation> {
-		return this.shipstation.request<InventoryLocation>({
-			url: this.baseUrl,
-			method: "POST",
-			data,
-		});
+		return this.shipstation.request<InventoryLocation>(
+			{
+				url: this.baseUrl,
+				method: "POST",
+				data,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -57,15 +70,21 @@ export class InventoryLocations extends BaseResource {
 	 *
 	 * @param inventoryLocationId ID of the inventory location to get
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns The inventory location with the given ID
 	 */
 	public async getById(
 		inventoryLocationId: string,
+		callOptions?: ShipStationCallOptions,
 	): Promise<InventoryLocation> {
-		return this.shipstation.request<InventoryLocation>({
-			url: `${this.baseUrl}/${inventoryLocationId}`,
-			method: "GET",
-		});
+		return this.shipstation.request<InventoryLocation>(
+			{
+				url: `${this.baseUrl}/${inventoryLocationId}`,
+				method: "GET",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -73,16 +92,22 @@ export class InventoryLocations extends BaseResource {
 	 *
 	 * @param inventoryLocationId ID of the inventory location to update
 	 * @param name New name for the inventory location
+	 *
+	 * @param callOptions Axios request config for this call only
 	 */
 	public async update(
 		inventoryLocationId: string,
 		name: string,
+		callOptions?: ShipStationCallOptions,
 	): Promise<void> {
-		await this.shipstation.request({
-			url: `${this.baseUrl}/${inventoryLocationId}`,
-			method: "PUT",
-			data: { name },
-		});
+		await this.shipstation.request(
+			{
+				url: `${this.baseUrl}/${inventoryLocationId}`,
+				method: "PUT",
+				data: { name },
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -90,15 +115,21 @@ export class InventoryLocations extends BaseResource {
 	 *
 	 * @param inventoryLocationId ID of the inventory location to delete
 	 * @param options Options for the request
+	 *
+	 * @param callOptions Axios request config for this call only
 	 */
 	public async delete(
 		inventoryLocationId: string,
 		options?: DeleteInventoryLocationOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<void> {
-		await this.shipstation.request({
-			url: `${this.baseUrl}/${inventoryLocationId}`,
-			method: "DELETE",
-			params: options,
-		});
+		await this.shipstation.request(
+			{
+				url: `${this.baseUrl}/${inventoryLocationId}`,
+				method: "DELETE",
+				params: options,
+			},
+			callOptions,
+		);
 	}
 }

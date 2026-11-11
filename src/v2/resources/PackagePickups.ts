@@ -1,4 +1,5 @@
 import type BaseAPI from "../../BaseAPI";
+import type { ShipStationCallOptions } from "../../BaseAPI";
 import { BaseResource } from "../../BaseResource";
 import type {
 	DeleteScheduledPickupResponse,
@@ -26,13 +27,21 @@ export class PackagePickups extends BaseResource {
 	 * @param pickupId Pickup Resource ID (>= 4 characters)
 	 * @example "pik_3YcKU5zdtJuCqoeNwyqqbW"
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns Package pickup details
 	 */
-	public async getById(pickupId: string): Promise<PackagePickup> {
-		return this.shipstation.request<PackagePickup>({
-			url: `${this.baseUrl}/${pickupId}`,
-			method: "GET",
-		});
+	public async getById(
+		pickupId: string,
+		callOptions?: ShipStationCallOptions,
+	): Promise<PackagePickup> {
+		return this.shipstation.request<PackagePickup>(
+			{
+				url: `${this.baseUrl}/${pickupId}`,
+				method: "GET",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -42,16 +51,22 @@ export class PackagePickups extends BaseResource {
 	 *
 	 * @param options List package pickups options
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns List of package pickups
 	 */
 	public async listScheduled(
 		options?: ListPackagePickupsOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<ListPackagePickupsResponse> {
-		return this.shipstation.request<ListPackagePickupsResponse>({
-			url: this.baseUrl,
-			method: "GET",
-			params: options,
-		});
+		return this.shipstation.request<ListPackagePickupsResponse>(
+			{
+				url: this.baseUrl,
+				method: "GET",
+				params: options,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -62,16 +77,22 @@ export class PackagePickups extends BaseResource {
 	 * @param labelIds Label IDs that will be included in the pickup request
 	 * @example ["se-28529731"]
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns Scheduled package pickup details
 	 */
 	public async schedule(
 		data: SchedulePackagePickupData,
+		callOptions?: ShipStationCallOptions,
 	): Promise<PackagePickup> {
-		return this.shipstation.request<PackagePickup>({
-			url: this.baseUrl,
-			method: "POST",
-			data,
-		});
+		return this.shipstation.request<PackagePickup>(
+			{
+				url: this.baseUrl,
+				method: "POST",
+				data,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -82,14 +103,20 @@ export class PackagePickups extends BaseResource {
 	 * @param pickupId Pickup Resource ID (>= 4 characters)
 	 * @example "pik_3YcKU5zdtJuCqoeNwyqqbW"
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns Deleted package pickup ID
 	 */
 	public async deleteScheduled(
 		pickupId: string,
+		callOptions?: ShipStationCallOptions,
 	): Promise<DeleteScheduledPickupResponse> {
-		return this.shipstation.request<DeleteScheduledPickupResponse>({
-			url: `${this.baseUrl}/${pickupId}`,
-			method: "DELETE",
-		});
+		return this.shipstation.request<DeleteScheduledPickupResponse>(
+			{
+				url: `${this.baseUrl}/${pickupId}`,
+				method: "DELETE",
+			},
+			callOptions,
+		);
 	}
 }

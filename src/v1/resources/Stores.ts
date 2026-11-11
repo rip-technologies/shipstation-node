@@ -1,4 +1,5 @@
 import type ShipStation from "../../BaseAPI";
+import type { ShipStationCallOptions } from "../../BaseAPI";
 import { BaseResource } from "../../BaseResource";
 import type {
 	DeactivateStoreResponse,
@@ -27,13 +28,21 @@ export class Stores extends BaseResource {
 	 *
 	 * @param storeId Unique identifier for the store.
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns The store details.
 	 */
-	public async get(storeId: number): Promise<StoreResponseItem> {
-		return this.shipstation.request<StoreResponseItem>({
-			url: `${this.baseUrl}/${storeId}`,
-			method: "GET",
-		});
+	public async get(
+		storeId: number,
+		callOptions?: ShipStationCallOptions,
+	): Promise<StoreResponseItem> {
+		return this.shipstation.request<StoreResponseItem>(
+			{
+				url: `${this.baseUrl}/${storeId}`,
+				method: "GET",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -43,14 +52,22 @@ export class Stores extends BaseResource {
 	 *
 	 * @param params The parameters for the request.
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns The list of stores.
 	 */
-	public async list(params?: ListStoresOptions): Promise<ListStoresResponse> {
-		return this.shipstation.request<ListStoresResponse>({
-			params,
-			url: this.baseUrl,
-			method: "GET",
-		});
+	public async list(
+		params?: ListStoresOptions,
+		callOptions?: ShipStationCallOptions,
+	): Promise<ListStoresResponse> {
+		return this.shipstation.request<ListStoresResponse>(
+			{
+				params,
+				url: this.baseUrl,
+				method: "GET",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -58,13 +75,20 @@ export class Stores extends BaseResource {
 	 *
 	 * Lists the marketplaces that can be integrated with ShipStation.
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns The list of marketplaces.
 	 */
-	public async listMarketplaces(): Promise<ListMarketplacesResponse> {
-		return this.shipstation.request<ListMarketplacesResponse>({
-			url: `${this.baseUrl}/marketplaces`,
-			method: "GET",
-		});
+	public async listMarketplaces(
+		callOptions?: ShipStationCallOptions,
+	): Promise<ListMarketplacesResponse> {
+		return this.shipstation.request<ListMarketplacesResponse>(
+			{
+				url: `${this.baseUrl}/marketplaces`,
+				method: "GET",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -79,14 +103,22 @@ export class Stores extends BaseResource {
 	 *
 	 * @param storeId ID of the store to deactivate.
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns The status of the deactivate operation.
 	 */
-	public async deactivate(storeId: number): Promise<DeactivateStoreResponse> {
-		return this.shipstation.request<DeactivateStoreResponse>({
-			url: `${this.baseUrl}/deactivate`,
-			method: "POST",
-			data: { storeId },
-		});
+	public async deactivate(
+		storeId: number,
+		callOptions?: ShipStationCallOptions,
+	): Promise<DeactivateStoreResponse> {
+		return this.shipstation.request<DeactivateStoreResponse>(
+			{
+				url: `${this.baseUrl}/deactivate`,
+				method: "POST",
+				data: { storeId },
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -101,16 +133,22 @@ export class Stores extends BaseResource {
 	 *
 	 * @param storeId Specifies the store whose status will be retrieved.
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns The refresh rate data of the store.
 	 */
 	public async getRefreshRate(
 		storeId: number,
+		callOptions?: ShipStationCallOptions,
 	): Promise<GetRefreshRateResponse> {
-		return this.shipstation.request<GetRefreshRateResponse>({
-			url: `${this.baseUrl}/getrefreshstatus`,
-			method: "GET",
-			params: { storeId },
-		});
+		return this.shipstation.request<GetRefreshRateResponse>(
+			{
+				url: `${this.baseUrl}/getrefreshstatus`,
+				method: "GET",
+				params: { storeId },
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -125,14 +163,22 @@ export class Stores extends BaseResource {
 	 *
 	 * @param storeId ID of the store to reactivate.
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns The status of the reactivate operation.
 	 */
-	public async reactivate(storeId: number): Promise<ReactivateStoreResponse> {
-		return this.shipstation.request<ReactivateStoreResponse>({
-			url: `${this.baseUrl}/reactivate`,
-			method: "POST",
-			data: { storeId },
-		});
+	public async reactivate(
+		storeId: number,
+		callOptions?: ShipStationCallOptions,
+	): Promise<ReactivateStoreResponse> {
+		return this.shipstation.request<ReactivateStoreResponse>(
+			{
+				url: `${this.baseUrl}/reactivate`,
+				method: "POST",
+				data: { storeId },
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -145,16 +191,22 @@ export class Stores extends BaseResource {
 	 *
 	 * @param params The parameters for the request.
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns The status of the refresh operation.
 	 */
 	public async refresh(
 		params?: RefreshStoreOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<RefreshStoreResponse> {
-		return this.shipstation.request<RefreshStoreResponse>({
-			url: `${this.baseUrl}/refresh`,
-			method: "POST",
-			params,
-		});
+		return this.shipstation.request<RefreshStoreResponse>(
+			{
+				url: `${this.baseUrl}/refresh`,
+				method: "POST",
+				params,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -170,16 +222,22 @@ export class Stores extends BaseResource {
 	 *
 	 * @param storeId Unique identifier for the store
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns The newly updated store.
 	 */
 	public async update(
 		storeId: number,
 		data: StoreResponseItem,
+		callOptions?: ShipStationCallOptions,
 	): Promise<StoreResponseItem> {
-		return this.shipstation.request<StoreResponseItem>({
-			url: `${this.baseUrl}/${storeId}`,
-			method: "PUT",
-			data,
-		});
+		return this.shipstation.request<StoreResponseItem>(
+			{
+				url: `${this.baseUrl}/${storeId}`,
+				method: "PUT",
+				data,
+			},
+			callOptions,
+		);
 	}
 }

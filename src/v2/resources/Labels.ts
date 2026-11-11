@@ -1,4 +1,5 @@
 import type BaseAPI from "../../BaseAPI";
+import type { ShipStationCallOptions } from "../../BaseAPI";
 import { BaseResource } from "../../BaseResource";
 import type {
 	CreateReturnLabelOptions,
@@ -35,16 +36,24 @@ export class Labels extends BaseResource {
 	 *
 	 * @param options Options for the list request
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns A `labels` array containing a page of results (as determined by the `page_size` query parameter). It also
 	 * includes other useful information, such as the total number of labels that match the query criteria, the number of
 	 * pages of results, and the URLs of the first, last, next, and previous pages of results.
 	 */
-	public async list(options: ListLabelsOptions): Promise<ListLabelsResponse> {
-		return this.shipstation.request<ListLabelsResponse>({
-			url: this.baseUrl,
-			method: "GET",
-			params: options,
-		});
+	public async list(
+		options: ListLabelsOptions,
+		callOptions?: ShipStationCallOptions,
+	): Promise<ListLabelsResponse> {
+		return this.shipstation.request<ListLabelsResponse>(
+			{
+				url: this.baseUrl,
+				method: "GET",
+				params: options,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -57,17 +66,23 @@ export class Labels extends BaseResource {
 	 *
 	 * @param options Options for the get request
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns The label specified by the label id.
 	 */
 	public async getById(
 		labelId: string,
 		options?: GetLabelByIdOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<Label> {
-		return this.shipstation.request<Label>({
-			url: `${this.baseUrl}/${labelId}`,
-			method: "GET",
-			params: options,
-		});
+		return this.shipstation.request<Label>(
+			{
+				url: `${this.baseUrl}/${labelId}`,
+				method: "GET",
+				params: options,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -78,13 +93,21 @@ export class Labels extends BaseResource {
 	 * @param labelId The ID of the label to get [1-25] characters `^se(-[a-z0-9]+)+$`
 	 * @example "se-28529731"
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns The label specified by the tracking number.
 	 */
-	public async getTrackingInfo(labelId: string): Promise<LabelTrackingInfo> {
-		return this.shipstation.request<LabelTrackingInfo>({
-			url: `${this.baseUrl}/${labelId}/tracking`,
-			method: "GET",
-		});
+	public async getTrackingInfo(
+		labelId: string,
+		callOptions?: ShipStationCallOptions,
+	): Promise<LabelTrackingInfo> {
+		return this.shipstation.request<LabelTrackingInfo>(
+			{
+				url: `${this.baseUrl}/${labelId}/tracking`,
+				method: "GET",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -96,13 +119,21 @@ export class Labels extends BaseResource {
 	 * @param labelId The ID of the label to void [1-25] characters `^se(-[a-z0-9]+)+$`
 	 * @example "se-28529731"
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns The status of the void operation.
 	 */
-	public async void(labelId: string): Promise<VoidLabelResponse> {
-		return this.shipstation.request<VoidLabelResponse>({
-			url: `${this.baseUrl}/${labelId}/void`,
-			method: "PUT",
-		});
+	public async void(
+		labelId: string,
+		callOptions?: ShipStationCallOptions,
+	): Promise<VoidLabelResponse> {
+		return this.shipstation.request<VoidLabelResponse>(
+			{
+				url: `${this.baseUrl}/${labelId}/void`,
+				method: "PUT",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -112,14 +143,22 @@ export class Labels extends BaseResource {
 	 *
 	 * @param data The data for the purchase request
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns The newly purchased label.
 	 */
-	public async purchase(data: PurchaseLabelOptions): Promise<Label> {
-		return this.shipstation.request<Label>({
-			url: this.baseUrl,
-			method: "POST",
-			data,
-		});
+	public async purchase(
+		data: PurchaseLabelOptions,
+		callOptions?: ShipStationCallOptions,
+	): Promise<Label> {
+		return this.shipstation.request<Label>(
+			{
+				url: this.baseUrl,
+				method: "POST",
+				data,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -133,17 +172,23 @@ export class Labels extends BaseResource {
 	 *
 	 * @param options Options for the purchase request
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns The newly purchased label.
 	 */
 	public async purchaseWithRateId(
 		rateId: string,
 		options?: PurchaseLabelWithIdOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<Label> {
-		return this.shipstation.request<Label>({
-			url: `${this.baseUrl}/rates/${rateId}`,
-			method: "POST",
-			data: options,
-		});
+		return this.shipstation.request<Label>(
+			{
+				url: `${this.baseUrl}/rates/${rateId}`,
+				method: "POST",
+				data: options,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -156,17 +201,23 @@ export class Labels extends BaseResource {
 	 *
 	 * @param options Options for the purchase request
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns The newly purchased label.
 	 */
 	public async purchaseWithShipmentId(
 		shipmentId: string,
 		options?: PurchaseLabelWithIdOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<Label> {
-		return this.shipstation.request<Label>({
-			url: `${this.baseUrl}/shipments/${shipmentId}`,
-			method: "POST",
-			data: options,
-		});
+		return this.shipstation.request<Label>(
+			{
+				url: `${this.baseUrl}/shipments/${shipmentId}`,
+				method: "POST",
+				data: options,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -180,16 +231,22 @@ export class Labels extends BaseResource {
 	 *
 	 * @param options Options for the purchase request
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns The newly purchased label.
 	 */
 	public async createReturnLabel(
 		labelId: string,
 		options?: CreateReturnLabelOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<Label> {
-		return this.shipstation.request<Label>({
-			url: `${this.baseUrl}/${labelId}/return`,
-			method: "POST",
-			data: options,
-		});
+		return this.shipstation.request<Label>(
+			{
+				url: `${this.baseUrl}/${labelId}/return`,
+				method: "POST",
+				data: options,
+			},
+			callOptions,
+		);
 	}
 }

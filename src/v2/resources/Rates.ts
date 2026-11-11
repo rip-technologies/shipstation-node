@@ -1,4 +1,5 @@
 import type BaseAPI from "../../BaseAPI";
+import type { ShipStationCallOptions } from "../../BaseAPI";
 import { BaseResource } from "../../BaseResource";
 import type {
 	EstimateRatesOptions,
@@ -27,13 +28,21 @@ export class Rates extends BaseResource {
 	 * @param rateId Rate ID [1-25] characters `^se(-[a-z0-9]+)+$`
 	 * @example "se-28529731"
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns The rate specified by the ID
 	 */
-	public async getById(rateId: string): Promise<Rate> {
-		return this.shipstation.request<Rate>({
-			url: `${this.baseUrl}/${rateId}`,
-			method: "GET",
-		});
+	public async getById(
+		rateId: string,
+		callOptions?: ShipStationCallOptions,
+	): Promise<Rate> {
+		return this.shipstation.request<Rate>(
+			{
+				url: `${this.baseUrl}/${rateId}`,
+				method: "GET",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -45,14 +54,22 @@ export class Rates extends BaseResource {
 	 *
 	 * @param options The options for the request
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns
 	 */
-	public async get(options: GetRatesOptions): Promise<GetRatesResponse> {
-		return this.shipstation.request<GetRatesResponse>({
-			url: this.baseUrl,
-			method: "POST",
-			data: options,
-		});
+	public async get(
+		options: GetRatesOptions,
+		callOptions?: ShipStationCallOptions,
+	): Promise<GetRatesResponse> {
+		return this.shipstation.request<GetRatesResponse>(
+			{
+				url: this.baseUrl,
+				method: "POST",
+				data: options,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -62,15 +79,21 @@ export class Rates extends BaseResource {
 	 *
 	 * @param options The options for the request
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns A list of rate estimates
 	 */
 	public async estimate(
 		options: EstimateRatesOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<EstimateRatesResponse> {
-		return this.shipstation.request<EstimateRatesResponse>({
-			url: `${this.baseUrl}/estimate`,
-			method: "POST",
-			data: options,
-		});
+		return this.shipstation.request<EstimateRatesResponse>(
+			{
+				url: `${this.baseUrl}/estimate`,
+				method: "POST",
+				data: options,
+			},
+			callOptions,
+		);
 	}
 }

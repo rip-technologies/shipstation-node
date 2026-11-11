@@ -1,4 +1,5 @@
 import type BaseAPI from "../../BaseAPI";
+import type { ShipStationCallOptions } from "../../BaseAPI";
 import { BaseResource } from "../../BaseResource";
 import type { CreateTagResponse, GetTagsResponse } from "../types";
 
@@ -17,13 +18,20 @@ export class Tags extends BaseResource {
 	 *
 	 * Get a list of all tags associated with an account.
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns A list of tags for the account.
 	 */
-	public async get(): Promise<GetTagsResponse> {
-		return this.shipstation.request<GetTagsResponse>({
-			url: this.baseUrl,
-			method: "GET",
-		});
+	public async get(
+		callOptions?: ShipStationCallOptions,
+	): Promise<GetTagsResponse> {
+		return this.shipstation.request<GetTagsResponse>(
+			{
+				url: this.baseUrl,
+				method: "GET",
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -35,11 +43,19 @@ export class Tags extends BaseResource {
 	 * use tags to distinguish between domestic and international shipments, or between insured and uninsured shipments.
 	 * Or maybe you want to create a tag for each of your customers so you can easily retrieve every shipment for a
 	 * customer.
+	 *
+	 * @param callOptions Axios request config for this call only
 	 */
-	public async create(tagName: string): Promise<CreateTagResponse> {
-		return this.shipstation.request<CreateTagResponse>({
-			url: `${this.baseUrl}/${tagName}`,
-			method: "POST",
-		});
+	public async create(
+		tagName: string,
+		callOptions?: ShipStationCallOptions,
+	): Promise<CreateTagResponse> {
+		return this.shipstation.request<CreateTagResponse>(
+			{
+				url: `${this.baseUrl}/${tagName}`,
+				method: "POST",
+			},
+			callOptions,
+		);
 	}
 }

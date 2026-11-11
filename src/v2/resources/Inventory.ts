@@ -1,4 +1,5 @@
 import type BaseAPI from "../../BaseAPI";
+import type { ShipStationCallOptions } from "../../BaseAPI";
 import { BaseResource } from "../../BaseResource";
 import type {
 	ListSKUInventoryLevelsOptions,
@@ -21,30 +22,42 @@ export class Inventory extends BaseResource {
 	 *
 	 * @param options Options for the request
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns SKU inventory levels
 	 */
 	public async listSKUInventoryLevels(
 		options: ListSKUInventoryLevelsOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<ListSKUInventoryLevelsResponse> {
-		return this.shipstation.request<ListSKUInventoryLevelsResponse>({
-			url: this.baseUrl,
-			method: "GET",
-			params: options,
-		});
+		return this.shipstation.request<ListSKUInventoryLevelsResponse>(
+			{
+				url: this.baseUrl,
+				method: "GET",
+				params: options,
+			},
+			callOptions,
+		);
 	}
 
 	/**
 	 * [Official Documentation](https://docs.shipstation.com/openapi/inventory/updateskustocklevels)
 	 *
 	 * @param data Data for the request
+	 *
+	 * @param callOptions Axios request config for this call only
 	 */
 	public async updateSKULevelsAndProperties(
 		options: UpdateSKULevelsAndPropertiesOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<void> {
-		await this.shipstation.request({
-			url: this.baseUrl,
-			method: "POST",
-			data: options,
-		});
+		await this.shipstation.request(
+			{
+				url: this.baseUrl,
+				method: "POST",
+				data: options,
+			},
+			callOptions,
+		);
 	}
 }

@@ -1,4 +1,5 @@
 import type ShipStation from "../../BaseAPI";
+import type { ShipStationCallOptions } from "../../BaseAPI";
 import { BaseResource } from "../../BaseResource";
 import type {
 	ListFulfillmentsOptions,
@@ -21,15 +22,21 @@ export class Fulfillments extends BaseResource {
 	 *
 	 * @param params The parameters for the request.
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns A list of fulfillments.
 	 */
 	public async list(
 		params?: ListFulfillmentsOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<ListFulfillmentsResponse> {
-		return this.shipstation.request<ListFulfillmentsResponse>({
-			url: this.baseUrl,
-			method: "GET",
-			params,
-		});
+		return this.shipstation.request<ListFulfillmentsResponse>(
+			{
+				url: this.baseUrl,
+				method: "GET",
+				params,
+			},
+			callOptions,
+		);
 	}
 }

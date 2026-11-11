@@ -1,4 +1,5 @@
 import type BaseAPI from "../../BaseAPI";
+import type { ShipStationCallOptions } from "../../BaseAPI";
 import { BaseResource } from "../../BaseResource";
 import type {
 	ListAccountTagsResponse,
@@ -27,16 +28,22 @@ export class Accounts extends BaseResource {
 	 *
 	 * @param data The data for the request.
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns The details of the newly created account.
 	 */
 	public async register(
 		data: RegisterAccountOptions,
+		callOptions?: ShipStationCallOptions,
 	): Promise<RegisterAccountResponse> {
-		return this.shipstation.request<RegisterAccountResponse>({
-			url: `${this.baseUrl}/registeraccount`,
-			method: "POST",
-			data,
-		});
+		return this.shipstation.request<RegisterAccountResponse>(
+			{
+				url: `${this.baseUrl}/registeraccount`,
+				method: "POST",
+				data,
+			},
+			callOptions,
+		);
 	}
 
 	/**
@@ -44,12 +51,19 @@ export class Accounts extends BaseResource {
 	 *
 	 * List all tags defined for this account.
 	 *
+	 * @param callOptions Axios request config for this call only
+	 *
 	 * @returns A list of tags for the account.
 	 */
-	public async listTags(): Promise<ListAccountTagsResponse> {
-		return this.shipstation.request<ListAccountTagsResponse>({
-			url: `${this.baseUrl}/listtags`,
-			method: "GET",
-		});
+	public async listTags(
+		callOptions?: ShipStationCallOptions,
+	): Promise<ListAccountTagsResponse> {
+		return this.shipstation.request<ListAccountTagsResponse>(
+			{
+				url: `${this.baseUrl}/listtags`,
+				method: "GET",
+			},
+			callOptions,
+		);
 	}
 }

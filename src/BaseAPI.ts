@@ -12,6 +12,12 @@ export interface ShipStationRequestOptions
 	method?: "GET" | "POST" | "PUT" | "DELETE";
 }
 
+/**
+ * Axios request config for a single SDK call. It is applied after the SDK's own settings, so it can override them.
+ * Headers are merged with the auth headers, and `"axios-retry"` is merged over the client's `retryConfig`.
+ */
+export type ShipStationCallOptions = AxiosRequestConfig;
+
 export interface ShipStationOptions {
 	credentials: {
 		v1?: {
@@ -64,13 +70,15 @@ export default abstract class BaseAPI {
 		// Initialize rate limiter
 		this.limiter = new RateLimiter(rateLimitOpts);
 
-		// Retry failed requests
-		if (options.retryConfig) {
-			axiosRetry(this.http, options.retryConfig);
-		}
+		// Retry failed requests. Always installed, so a per-call "axios-retry" policy works on a client without
+		// retryConfig; such a client still never retries by default.
+		axiosRetry(this.http, options.retryConfig ?? { retries: 0 });
 	}
 
-	public request = async <T>(requestData: ShipStationRequestOptions) => {
+	public request = async <T>(
+		requestData: ShipStationRequestOptions,
+		callOptions?: ShipStationCallOptions,
+	) => {
 		if (!this.authHeaders) {
 			throw new Error(`Credentials are not set for the ${this.type} API`);
 		}
@@ -81,8 +89,9 @@ export default abstract class BaseAPI {
 		try {
 			const response = await this.http.request<T>({
 				baseURL: this.baseURL,
-				headers: this.authHeaders,
 				...requestData,
+				...callOptions,
+				headers: { ...this.authHeaders, ...callOptions?.headers },
 			});
 
 			return response.data;

@@ -133,6 +133,18 @@ const shipstation = new ShipStation({
 });
 ```
 
+### Per-call Options
+
+Every SDK method takes an optional last argument: an axios request config for that call only. It is applied after the
+SDK's own settings, so it can override them.
+
+```ts
+const rates = await shipstation.v2.rates.get(request, {
+  timeout: 15_000,
+  'axios-retry': { retries: 2, retryCondition, retryDelay }
+});
+```
+
 ---
 
 ## Contributing
