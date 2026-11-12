@@ -13,7 +13,7 @@ Unofficial ShipStation API wrapper for Node.js, providing a modern, type-safe in
 
 - Full support for both ShipStation v1 and v2 APIs
 - Complete TypeScript support and request validation with detailed type definitions
-- Automatic rate limiting handling
+- Automatic rate limiting: evenly paced requests, retries included, and a client-wide pause on 429
 - Mock API support for testing (only available for v2 API)
 - Promise-based async/await interface
 - Customizable request configurations with automatic retries
@@ -144,6 +144,54 @@ const rates = await shipstation.v2.rates.get(request, {
   'axios-retry': { retries: 2, retryCondition, retryDelay }
 });
 ```
+
+### Rate Limiting
+
+Each `ShipStation` instance paces its own requests per API version. It starts at most one request every
+`60_000 / requestsPerMinute` ms, in the order the calls were made. Every attempt waits for a turn, and that includes
+retries. The defaults match ShipStation's limits: 200 requests per minute for v2 and 40 for v1. Set a lower rate when
+several processes share one API key.
+
+```ts
+const shipstation = new ShipStation({
+  credentials: {
+    /* ... */
+  },
+  rateLimit: {
+    v2: { requestsPerMinute: 150 }
+  }
+});
+```
+
+A 429 pauses the whole client. Requests that are already waiting and requests made later all wait until the
+`Retry-After` time has passed. If a v1 429 has no `Retry-After`, the client uses `X-Rate-Limit-Reset` instead. If
+neither header is there, it pauses for `fallbackPauseMs`, which defaults to 30 seconds.
+
+Whether a 429 is retried is still up to your retry policy (`retryConfig` or a per-call `'axios-retry'`). If it is,
+the retry goes out as soon as the pause ends, and `retryDelay` is not added on top of the pause. All other retries
+still wait for `retryDelay`. Because the pause counts as waiting for a turn, it does not use up the request's `timeout`.
+
+Pacing is per instance. To share one limit across your app, share one `ShipStation` instance.
+
+### Per-attempt Hook
+
+`onAttempt` is called after every HTTP attempt, whether it succeeded or failed. It is useful for logging and metrics.
+
+```ts
+const shipstation = new ShipStation({
+  credentials: {
+    /* ... */
+  },
+  onAttempt: ({ api, method, url, status, errorCode, retryCount, delayMs, durationMs, pauseMs, requestId }) => {
+    logger.info('shipstation attempt', { api, method, url, status, errorCode, retryCount, delayMs, durationMs, pauseMs, requestId });
+  }
+});
+```
+
+- `delayMs` is how long the attempt waited for its turn.
+- `pauseMs` is set when a 429 paused the client.
+- `requestId` comes from the `request_id` field of v2 error bodies. ShipStation does not document a request ID header.
+- Errors thrown by the hook are ignored.
 
 ---
 
