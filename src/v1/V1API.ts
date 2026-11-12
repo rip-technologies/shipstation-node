@@ -1,5 +1,3 @@
-import type { RateLimiterOpts } from "limiter";
-
 import type { ShipStationOptions } from "../BaseAPI";
 import BaseAPI from "../BaseAPI";
 import { Accounts } from "./resources/Accounts";
@@ -14,10 +12,7 @@ import { Warehouses } from "./resources/Warehouses";
 import { Webhooks } from "./resources/Webhooks";
 
 // 40 requests per minute - https://www.shipstation.com/docs/api/requirements/#api-rate-limits
-const RATE_LIMIT_OPTS: RateLimiterOpts = {
-	tokensPerInterval: 40,
-	interval: "minute",
-};
+const DEFAULT_REQUESTS_PER_MINUTE = 40;
 
 export class V1API extends BaseAPI {
 	public accounts: Accounts;
@@ -32,7 +27,12 @@ export class V1API extends BaseAPI {
 	public users: Users;
 
 	constructor(options: ShipStationOptions) {
-		super("v1", "https://ssapi.shipstation.com/", RATE_LIMIT_OPTS, options);
+		super(
+			"v1",
+			"https://ssapi.shipstation.com/",
+			DEFAULT_REQUESTS_PER_MINUTE,
+			options,
+		);
 
 		const credentials = options.credentials.v1;
 		if (credentials?.apiKey && credentials.apiSecret) {

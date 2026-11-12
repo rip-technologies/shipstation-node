@@ -1,6 +1,8 @@
 import type {
+	ShipStationAttempt,
 	ShipStationCallOptions,
 	ShipStationOptions,
+	ShipStationRateLimit,
 	ShipStationRequestOptions,
 } from "./BaseAPI";
 import { V1API } from "./v1/V1API";
@@ -17,4 +19,10 @@ export class ShipStation {
 }
 
 export * from "./v2/types";
-export type { ShipStationCallOptions, ShipStationRequestOptions };
+export type {
+	ShipStationAttempt,
+	ShipStationCallOptions,
+	ShipStationOptions,
+	ShipStationRateLimit,
+	ShipStationRequestOptions,
+};

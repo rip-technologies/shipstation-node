@@ -1,5 +1,3 @@
-import type { RateLimiterOpts } from "limiter";
-
 import type { ShipStationOptions } from "../BaseAPI";
 import BaseAPI from "../BaseAPI";
 import { Batches } from "./resources/Batches";
@@ -20,10 +18,7 @@ import { Warehouses } from "./resources/Warehouses";
 import { Webhooks } from "./resources/Webhooks";
 
 // 200 requests per minute - https://docs.shipstation.com/rate-limits
-const RATE_LIMIT_OPTS: RateLimiterOpts = {
-	tokensPerInterval: 200,
-	interval: "minute",
-};
+const DEFAULT_REQUESTS_PER_MINUTE = 200;
 
 export class V2API extends BaseAPI {
 	public isMock: boolean;
@@ -53,7 +48,7 @@ export class V2API extends BaseAPI {
 			? "https://docs.shipstation.com/_mock/openapi/v2"
 			: "https://api.shipstation.com/v2";
 
-		super("v2", baseUrl, RATE_LIMIT_OPTS, options);
+		super("v2", baseUrl, DEFAULT_REQUESTS_PER_MINUTE, options);
 
 		const apiKey = isMock ? "mock" : credentials?.apiKey;
 		if (apiKey) {
