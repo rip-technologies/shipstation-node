@@ -7,6 +7,7 @@ import type {
 	PackageTypeDimensions,
 	Rate,
 	Shipment,
+	ShipStationAPIError,
 	Weight,
 } from "../models";
 import type { PurchaseLabelOptions } from "./labels";
@@ -245,6 +246,7 @@ export interface RatesInformation {
 	 */
 	created_at: string;
 	status: "working" | "completed" | "partial" | "error";
+	errors?: Array<ShipStationAPIError>;
 }
 
 export interface GetRatesResponse extends Shipment {
