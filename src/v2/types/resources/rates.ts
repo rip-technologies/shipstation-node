@@ -7,6 +7,7 @@ import type {
 	PackageTypeDimensions,
 	Rate,
 	Shipment,
+	ShipStationAPIError,
 	Weight,
 } from "../models";
 import type { PurchaseLabelOptions } from "./labels";
@@ -223,6 +224,8 @@ export interface RatesInformation {
 	 * @default []
 	 */
 	invalid_rates: Array<Rate>;
+	/** The carrier and ShipStation errors for the rate request */
+	errors?: Array<ShipStationAPIError>;
 	/**
 	 * A string that uniquely identifies a ShipStation resource, such as a carrier, label, shipment, etc. [1-25]
 	 * characters `^se(-[a-z0-9]+)+$`

@@ -1,3 +1,5 @@
+import type { RatesInformation } from "../resources";
+
 export type ShipStationAPIErrorSource =
 	| "carrier"
 	| "order_source"
@@ -95,5 +97,41 @@ export class ShipStationError extends Error {
 	constructor(data: ErrorResponse) {
 		super(data.errors[0].message);
 		this.data = data;
+	}
+}
+
+/** Error trackers keep only the message, so it carries the rate response diagnostics. */
+export class ShipStationRatesError extends Error {
+	override readonly name = "ShipStationRatesError";
+	readonly rateResponse: RatesInformation;
+
+	constructor(rateResponse: RatesInformation) {
+		// ShipStation may omit any of these arrays; field_value is left out because it can hold addresses
+		super(
+			JSON.stringify({
+				errors: (rateResponse.errors ?? []).map(
+					({ error_source, error_type, error_code, message, field_name }) => ({
+						error_source,
+						error_type,
+						error_code,
+						message,
+						field_name,
+					}),
+				),
+				invalid_rates: (rateResponse.invalid_rates ?? []).map(
+					({ carrier_code, service_code, error_messages }) => ({
+						carrier_code,
+						service_code,
+						error_messages,
+					}),
+				),
+				rate_request_id: rateResponse.rate_request_id,
+				rates: (rateResponse.rates ?? []).map(
+					({ carrier_code, service_code }) => ({ carrier_code, service_code }),
+				),
+				status: rateResponse.status,
+			}),
+		);
+		this.rateResponse = rateResponse;
 	}
 }
