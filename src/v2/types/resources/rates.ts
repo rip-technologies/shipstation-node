@@ -224,7 +224,6 @@ export interface RatesInformation {
 	 * @default []
 	 */
 	invalid_rates: Array<Rate>;
-	errors?: Array<ShipStationAPIError>;
 	/**
 	 * A string that uniquely identifies a ShipStation resource, such as a carrier, label, shipment, etc. [1-25]
 	 * characters `^se(-[a-z0-9]+)+$`
@@ -247,6 +246,7 @@ export interface RatesInformation {
 	 */
 	created_at: string;
 	status: "working" | "completed" | "partial" | "error";
+	errors?: Array<ShipStationAPIError>;
 }
 
 export interface GetRatesResponse extends Shipment {
