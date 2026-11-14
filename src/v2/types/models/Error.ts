@@ -106,7 +106,6 @@ export class ShipStationRatesError extends Error {
 	readonly rateResponse: RatesInformation;
 
 	constructor(rateResponse: RatesInformation) {
-		// ShipStation may omit any of these arrays; field_value is left out because it can hold addresses
 		super(
 			JSON.stringify({
 				errors: (rateResponse.errors ?? []).map(

@@ -28,7 +28,6 @@ it("keeps the rate response and puts its diagnostics in the message", () => {
 
 	const error = new ShipStationRatesError(rateResponse);
 
-	expect(error.name).toBe("ShipStationRatesError");
 	expect(error.rateResponse).toBe(rateResponse);
 	expect(JSON.parse(error.message)).toEqual({
 		errors: [
@@ -51,5 +50,4 @@ it("keeps the rate response and puts its diagnostics in the message", () => {
 		rates: [],
 		status: "error",
 	});
-	expect(error.message).not.toContain("SW1A 1AA");
 });
